@@ -13,9 +13,9 @@ class UsersController < ApplicationController
         end
 
     def create 
-        user = User.create!(user_params)
+        @user = User.create!(user_params)
         login_user
-        render json: user, status: 201
+        render json: @user, status: 201
     end
 
     private 
