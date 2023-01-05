@@ -11,10 +11,12 @@ class ActivitiesController < ApplicationController
         render json: activity, status: 201
         else
             render json: {errors: "this activity does not exist"}, status: 401
+        end
     end
+
         
     def create 
-        activity = Activity.new(activity_params)
+        activity = Activity.create!(activity_params)
         if activity.save
             render json: activity, status: :ok
         else 
