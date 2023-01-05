@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Activity.destroy_all
+User.destroy_all 
 
 walking = Activity.create!(
     name: "go for a walk"
@@ -34,5 +36,17 @@ Lizzie = User.create!(
     image: "https://media.licdn.com/dms/image/C5603AQFh04C-sBJqeQ/profile-displayphoto-shrink_800_800/0/1658941068434?e=1678320000&v=beta&t=Qw8PrtB7DL6Il-FNILHdNcuz8Ek2gJeq-1s8hhyRkCg",
     password: "1234"
 )
+
+50.times do 
+    User.create(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        email: Faker::Internet.email,
+        bio: Faker::Lorem.words(number: rand(10..50)),
+        question: Faker::Lorem.words(number: rand(10..50)),
+        image: Faker::SlackEmoji.people,
+        password: Faker::Company.spanish_organisation_number
+    )
+end
 
 puts "Users Seeded ⏳"

@@ -14,7 +14,6 @@ class ActivitiesController < ApplicationController
         end
     end
 
-        
     def create 
         activity = Activity.create!(activity_params)
         if activity.save

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    
+    # before_action :set_user, only: [ :update, :destroy]
+
     def index
         users = User.all
         render json: users
@@ -39,5 +40,9 @@ class UsersController < ApplicationController
     def edit_user_params
         params.permit(:first_name, :last_name, :bio, :question, :image )
     end
+
+    # def set_user
+    #     user = User.find_by_id(params[:id])
+    # end
     
 end
