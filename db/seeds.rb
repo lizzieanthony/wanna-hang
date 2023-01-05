@@ -8,6 +8,8 @@
 Activity.destroy_all
 User.destroy_all 
 
+require 'faker'
+
 walking = Activity.create!(
     name: "go for a walk"
 )
@@ -37,13 +39,13 @@ Lizzie = User.create!(
     password: "1234"
 )
 
-50.times do 
+20.times do 
     User.create(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         email: Faker::Internet.email,
-        bio: Faker::Lorem.words(number: rand(10..50)),
-        question: Faker::Lorem.words(number: rand(10..50)),
+        bio: Faker::Quote.matz,
+        question: Faker::Quote.matz,
         image: Faker::SlackEmoji.people,
         password: Faker::Company.spanish_organisation_number
     )
