@@ -11,19 +11,19 @@ User.destroy_all
 require 'faker'
 
 walking = Activity.create!(
-    name: "go for a walk"
+    name: "walk"
 )
 hiking = Activity.create!(
-    name: "go on a hike"
+    name: "hike"
 )
 tennis = Activity.create!(
-    name: "go play tennis"
+    name: "tennis"
 )
 Coffee = Activity.create!(
-    name: "meet up for coffee"
+    name: "coffee"
 )
 music = Activity.create!(
-    name: "go listen to live music"
+    name: "live music"
 )
 
 puts "Activities Seeded ⏳"
