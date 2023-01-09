@@ -1,19 +1,27 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 
 const ActivitiesList = () => {
-//     const [activities, setActivities] = useState([])
+    const [activities, setActivities] = useState([])
 
-//   useEffect(() => {
-//     fetch('/activities')
-//     .then((r) => r.json())
-//     .then(activities => setActivities(activities));
-//   }, []);
+  useEffect(() => {
+    fetch('/activities')
+    .then((r) => r.json())
+    .then(activities => setActivities(activities));
+  }, []);
     
     return ( 
-        <div>
-      hello
-        </div>
+      <div>
+      <br />
+        {activities.map((activity) => (
+            <div className="activityList" key={activity.id}>
+              <Link to={`/activities/${activity.name}`} >
+                <h2>{activity.name}</h2>
+              </Link>
+            </div>
+        ))}
+      </div>
      );
 }
  

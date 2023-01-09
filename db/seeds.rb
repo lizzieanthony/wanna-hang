@@ -48,7 +48,9 @@ Lizzie = User.create!(
         question: Faker::Quote.matz,
         image: Faker::SlackEmoji.people,
         password: Faker::Company.spanish_organisation_number
-    )
+    )-
 end
+
+# user.all.each 
 
 puts "Users Seeded ⏳"

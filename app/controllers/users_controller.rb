@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.create(user_params)
+        login_user
         render json: @user, status: 201
     end
 
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
         user = User.find_by_id(params[:id])
         user.update!(edit_user_params)
         render json: user
+        # user activities update
     end
 
     def destroy
