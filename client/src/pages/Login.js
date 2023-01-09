@@ -1,6 +1,6 @@
 const Login = () => {
     return ( 
-        <div>
+        <div>not logged in
         </div>
      );
 }
