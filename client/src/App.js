@@ -22,11 +22,11 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
+      <NavBar user={user} setUser={setUser}/>
       <div className="content">
       <Routes >
-          <Route path="/" element={<ActivitiesList />} />
-          <Route exact path="/login" element={<Login />}/>
+          <Route path="/" element={<ActivitiesList user={user} />} />
+          <Route exact path="/login" element={<Login setUser={setUser} />}/>
         </Routes>
       </div>
         

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   end
 
   def login_user
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
   end
 
 end

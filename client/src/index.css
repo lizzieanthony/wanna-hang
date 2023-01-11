@@ -13,4 +13,36 @@
   padding: 20px;
 }
 
-  
+.nav {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+.nav h1 {
+  color: #f1356d;
+}
+.nav .links {
+  margin-left: auto;
+}
+.nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  color: #f1356d
+}
+.nav a:hover {
+  color: #ffa0af
+}
+
+.login-box {
+  max-width: 500px;
+  margin: 150px auto;
+  padding: 20px;
+  text-align: center;
+  opacity: .6;
+  background-color: #B1BCA0;
+  border-radius: 6%;
+}
