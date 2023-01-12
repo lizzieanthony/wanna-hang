@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 
 
-const ActivitiesList = () => {
+const ListedActivities = ({allUsers}) => {
     const [activities, setActivities] = useState([])
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ActivitiesList = () => {
      );
 }
  
-export default ActivitiesList;
+export default ListedActivities;
 
   // {activities.map((activity) => 
         //     <h2>{activity.name}</h2>

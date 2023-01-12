@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import ActivitiesList from "./ActivitiesList";
+import ListedActivities from "./ListedActivities";
 import {Link} from "react-router-dom";
 
 
-const Home = ({user}) => {
+const Home = ({allUsers}) => {
     return ( 
-        <div>
-        <ActivitiesList user={user} />
+        <div className="home-page">
+        <ListedActivities allUsers={allUsers} />
         <Link to="/all">
         <button>View All Users</button>
         </Link>
