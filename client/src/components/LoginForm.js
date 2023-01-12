@@ -30,7 +30,7 @@ const LoginForm = ({setUser}) => {
     }
 
     return ( 
-        <div>
+        <div className="login-form">
         <form onSubmit={handleSubmit}>
         <label>Email:</label>
          <input
@@ -47,7 +47,9 @@ const LoginForm = ({setUser}) => {
            onChange={(e) => setPassword(e.target.value)}
          />
          <button>Login</button>
-         
+         {errors.map((err) => (
+        <p key={err}>{err}</p>
+        ))}
        </form>
         </div>
      );
@@ -55,6 +57,3 @@ const LoginForm = ({setUser}) => {
  
 export default LoginForm;
 
-// {errors.map((err) => (
-//     <p key={err}>{err}</p>
-//   ))}

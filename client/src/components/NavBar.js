@@ -9,7 +9,7 @@ const NavBar = ({user, setUser}) => {
             }
         })
     }
-    
+
     return ( 
         <nav className="nav">
             <h1><Link to="/">Wanna Hang?</Link> </h1>
@@ -22,7 +22,7 @@ const NavBar = ({user, setUser}) => {
                     <button onClick={handleLogoutClick}>Logout</button>
                     <Link to="/edit_profile">
                     <button >Edit Profile</button>
-                    </Link>
+                    </Link>  
                 </div>
         )} 
         </div>
