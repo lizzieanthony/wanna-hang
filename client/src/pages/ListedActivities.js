@@ -5,16 +5,22 @@ import {Link} from "react-router-dom";
 const ListedActivities = ({allUsers}) => {
     const [activities, setActivities] = useState([])
 
+    
+
   useEffect(() => {
     fetch('/activities')
     .then((r) => r.json())
     .then(activities => setActivities(activities));
   }, []);
+console.log(activities)
+
+const orderedActivities = [].concat(activities)
+  .sort((a, b) => a.name > b.name ? 1 : -1)
     
     return ( 
       <div>
       <br />
-        {activities.map((activity) => (
+        {orderedActivities.map((activity) => (
             <div className="activityList" key={activity.id}>
               <Link to={`/activities/${activity.name}`} >
                 <h2>{activity.name}</h2>

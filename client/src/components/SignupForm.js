@@ -7,7 +7,6 @@ const SignupForm = ({setUser}) => {
   const [bio, setBio] = useState("");
   const [question, setQuestion] = useState("")
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
 

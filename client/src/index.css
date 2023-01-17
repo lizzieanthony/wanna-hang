@@ -1,30 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
 * {
   margin: 0;
-  font-family: 'Sono', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #293241;
   text-decoration: none;
-  /* background-color: #e0fbfc; */
+  
 }
 
 .content {
-  max-width: 800px;
-  margin: 40px auto;
+  width: 100%;
+  height: 100%;
+  margin: auto;
   padding: 20px;
+  background-color: #e0fbfc;
 }
 
 .nav {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
-  width:100%;
+  max-width:100%;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
+  background-color: #3d5a80;
+  /* opacity: 90%; */
 }
-/* .nav h1 {
-  color: #ee6c4d;
-} */
 .nav .links {
   margin-left: auto;
   padding: 6px;
@@ -37,6 +38,20 @@
 }
 .nav a:hover {
   color: #ffa0af
+}
+.nav h2 {
+  color: #e0fbfc;
+}
+
+.home-page {
+  text-align: center;
+}
+
+.activity-list {
+  text-align: center;
+  column-count: 2;
+  width: 500px;
+  margin: 20px auto;
 }
 
 .login-box {
@@ -72,40 +87,32 @@
 .user-preview {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  padding: 10px 10px;
-  margin: auto;
-  border-bottom: 1px solid #fafafa;
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  width: 600px;
+  padding: 10px 8px;
+  margin: 30px auto ;
+  border-radius: 40px;
+  box-shadow: 0px 0px 10px #3d5a80;
+  background-color: #98c1d9;
+}
+.user-preview h3 {
+  float: right;
+  width: 350px;
+  padding-top: 10px;
+  padding-left: 8%;
+  box-sizing: border-box; 
+  text-align: justify;
+}
+.user-preview h1 {
+  width: 200px;
+  text-align: center;
 }
 
 .card-1 {
   display: flex;
-  /* border-radius: 5px; */
 }
-
 .card-1 img {
   width: 200px;
   height: 200px;
-  border-radius: 50px;
+  border-radius: 40px;
 }
 
-/* .column{
-  flex-direction: column;
-  margin-right: 10px;
-  flex: 1;
-} */
-
-.user-preview h3 {
-  float: right;
-  width: 300px;
-  box-sizing: border-box; 
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* .home-page  {
-  background-image: url("https://images.unsplash.com/photo-1572577779767-951d909a61cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1076&q=80");
-  background-color: #cccccc;
-  background-size: cover;
-} */

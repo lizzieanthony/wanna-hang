@@ -18,7 +18,7 @@ const NavBar = ({user, setUser}) => {
                 <Link to="/login">Start Reviewing</Link>
             ) : (
                 <div>
-                    <h2>Welcome {user.first_name}!</h2>
+                    <h2>Welcome, {user.first_name}!</h2>
                     <button onClick={handleLogoutClick}>Logout</button>
                     <Link to="/edit_profile">
                     <button >Edit Profile</button>

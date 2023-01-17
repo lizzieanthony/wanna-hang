@@ -46,9 +46,9 @@ Lizzie = User.create!(
         email: Faker::Internet.email,
         bio: Faker::Quote.matz,
         question: Faker::Quote.matz,
-        image: Faker::SlackEmoji.people,
+        image: "https://www.w3schools.com/howto/img_avatar.png",
         password: Faker::Company.spanish_organisation_number
-    )-
+    )
 end
 
 # user.all.each 
