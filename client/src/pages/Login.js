@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
+import { Link } from "react-router-dom";
 
 const Login = ({setUser}) => {
     const [showLogin, setShowLogin] = useState(true);
 
-    return ( 
+    return (
+        <div>
+        <div className="nav">
+            <h1 className="title">Wanna Hang?</h1>
+            </div>
         <div className="login-box">
         <h2>Step out of your comfort zone! we make the first move for you</h2>
         {showLogin ? (
@@ -26,8 +31,9 @@ const Login = ({setUser}) => {
           </p>
           </div>  
         )}
+        </div>    
         </div>
-        
+         
      );
 }
  

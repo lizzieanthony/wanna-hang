@@ -26,6 +26,9 @@
   background-color: #3d5a80;
   /* opacity: 90%; */
 }
+.title {
+  font-size: 30px;
+}
 .nav .links {
   margin-left: auto;
   padding: 6px;
@@ -41,6 +44,7 @@
 }
 .nav h2 {
   color: #e0fbfc;
+  font-size: 20px;
 }
 
 .home-page {
@@ -60,17 +64,20 @@
   padding: 20px;
   text-align: center;
   opacity: .6;
-  background-color: #B1BCA0;
+  background-color: #98c1d9;
   border-radius: 6%;
+  color: #3d5a80
+}
+.login-box h2 {
+  font-size: 22px;
+  margin: 5px;
+  color: #3d5a80
 }
 
 .login-form label {
   text-align: left;
   display: block;
-}
-.login-form h2 {
-  font-size: 20px;
-  margin: 10px;
+  color: #3d5a80
 }
 .login-form input, .login-form textarea {
   font-size: 16px;
@@ -81,8 +88,11 @@
   box-sizing: border-box;
   display: block;
   opacity: .6;
-  background-color: #B1BCA0;
+  background-color: #e0fbfc;
 }
+/* .login-form button{
+  background-color: #ee6c4d;
+} */
 
 .user-preview {
   display: flex;

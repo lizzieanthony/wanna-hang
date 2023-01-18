@@ -5,8 +5,6 @@ import {Link} from "react-router-dom";
 const ListedActivities = ({allUsers}) => {
     const [activities, setActivities] = useState([])
 
-    
-
   useEffect(() => {
     fetch('/activities')
     .then((r) => r.json())

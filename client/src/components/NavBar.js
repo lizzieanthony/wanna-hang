@@ -11,22 +11,18 @@ const NavBar = ({user, setUser}) => {
     }
 
     return ( 
-        <nav className="nav">
-            <h1><Link to="/">Wanna Hang?</Link> </h1>
+        <div className="nav">
+            <Link className="title" to="/">Wanna Hang?</Link> 
             <div className="links">
-            {!user ? (
-                <Link to="/login">Start Reviewing</Link>
-            ) : (
                 <div>
                     <h2>Welcome, {user.first_name}!</h2>
                     <button onClick={handleLogoutClick}>Logout</button>
                     <Link to="/edit_profile">
-                    <button >Edit Profile</button>
+                    <button>Edit Profile</button>
                     </Link>  
-                </div>
-        )} 
+                </div> 
         </div>
-        </nav>
+        </div>
      );
 }
  

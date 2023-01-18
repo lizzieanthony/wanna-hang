@@ -2,14 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // import {UserProvider} from "../context/user";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
-import ActivitiesList from "./pages/ListedActivities";
 import AllUsersList from "./pages/AllUsersList";
 import Home from "./pages/Home";
 import {useState, useEffect} from "react";
 
 
 function App() {
-
   const [user, setUser] = useState(null)
   const [allUsers, setAllUsers] = useState([])
     
@@ -33,7 +31,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar user={user} setUser={setUser}/>
+    <NavBar user={user} setUser={setUser}/>
       <div className="content">
       <Routes > 
           <Route path="/" element={<Home allUsers={allUsers}/>} />
