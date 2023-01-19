@@ -7,7 +7,9 @@ const AllUsersList = ({allUsers}) => {
     //     .sort((a, b) => a.first_name > b.first_name ? 1 : -1)
 
     return ( 
-        <div >
+        <div className="main">
+        <br/>
+        <br/>
         {allUsers.map((user) => (
             <div className="user-preview" key={user.id}>
             <div className="card-1">

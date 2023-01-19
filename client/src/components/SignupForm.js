@@ -90,7 +90,8 @@ const SignupForm = ({setUser}) => {
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
-        <input className="newButton" type="submit" value="Submit" />
+        <button className='newButton' type="submit">Create Account</button>
+        
         </form>
     
       </div>
@@ -99,3 +100,6 @@ const SignupForm = ({setUser}) => {
  
 export default SignupForm;
 
+// <div className='newButton'>
+//           <input type="submit" value="Submit" />
+//           </div>
