@@ -10,4 +10,6 @@ class User < ApplicationRecord
     validates :bio, presence: true, length: {maximum: 300}
     validates :question, presence: true, length: {maximum: 300}
 
+   
+        
 end

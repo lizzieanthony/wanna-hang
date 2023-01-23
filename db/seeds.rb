@@ -19,7 +19,7 @@ hiking = Activity.create!(
 tennis = Activity.create!(
     name: "tennis"
 )
-Coffee = Activity.create!(
+coffee = Activity.create!(
     name: "coffee"
 )
 music = Activity.create!(
@@ -29,7 +29,7 @@ music = Activity.create!(
 puts "Activities Seeded ⏳"
 
 
-Lizzie = User.create!(
+lizzie = User.create!(
     first_name: "Lizzie",
     last_name: "Anthony",
     email: "lizziewrab@me.com",

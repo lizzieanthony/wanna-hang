@@ -4,12 +4,15 @@ import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import AllUsersList from "./pages/AllUsersList";
 import Home from "./pages/Home";
+import UserProfile from "./pages/UserProfile";
+import SelectActivities from "./pages/SelectActivities";
 import {useState, useEffect} from "react";
 
 
 function App() {
   const [user, setUser] = useState(null)
   const [allUsers, setAllUsers] = useState([])
+  const [activities, setActivities] = useState([])
     
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -25,7 +28,16 @@ function App() {
     .then(allUsers => setAllUsers(allUsers));
 }, []);
 
+useEffect(() => {
+  fetch('/activities')
+  .then((r) => r.json())
+  .then(activities => setActivities(activities));
+}, []);
+console.log(activities)
+
   if (!user) return <Login setUser={setUser} />
+
+ 
 
   console.log(allUsers)
 
@@ -33,17 +45,21 @@ function App() {
     <Router>
     <NavBar user={user} setUser={setUser}/>
       <div className="content">
-      <Routes > 
-          <Route path="/" element={<Home allUsers={allUsers}/>} />
+        <Routes > 
+          <Route path="/" element={<Home allUsers={allUsers} activities={activities}/>} />
           <Route exact path="/login" element={<Login setUser={setUser} />}/>
+          <Route exact path="/setup" element={<SelectActivities activities={activities}/>}/>
           <Route exact path = "/all" element={<AllUsersList user={user} allUsers={allUsers} />} />
-
+          <Route exact path="/edit_profile" element={<UserProfile user={user} setUser={setUser} />}/>
         </Routes>
       </div>
         
     </Router>
   );
 }
+
+// <Route exact path="/edit_profile" element={<UserProfile setUser={setUser} />}/>
+
 
 export default App;
 

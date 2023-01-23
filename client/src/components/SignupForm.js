@@ -59,7 +59,7 @@ const SignupForm = ({setUser}) => {
            value={lastName}
            onChange={(e) => setLastName(e.target.value)}
          />
-         <label>Bio:</label>
+         <label>Tell us about yourself:</label>
          <input
            type="text"
            required

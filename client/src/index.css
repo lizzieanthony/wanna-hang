@@ -15,7 +15,6 @@
   padding: 20px;
   margin: auto; 
   width: auto; 
-  height: 100%; 
   background-color: #e0fbfc;
 }
 /* LOGIN PAGE */
@@ -84,17 +83,16 @@
 /* NAVBAR */
 
 .nav {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   width:100%;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  margin: auto;
   background-color: #3d5a80;
   position: sticky; 
   top: 0;
   overflow: hidden;
-
 }
 .title {
   font-size: 30px;
@@ -121,11 +119,22 @@
   font-size: 20px;
 }
 
+/* .nav button {
+  background: #3d5a80;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+} */
+
 /* HOME PAGE */
 
 .home-page {
   text-align: center;
-  margin-top: 80px;
+  margin-top: 60px;
 
 }
 
@@ -138,9 +147,6 @@
 
 /* LISTED USERS */
 
-.main {
-  margin-top: 30px;
-}
 .user-preview {
   display: flex;
   flex-direction: column;
@@ -173,3 +179,7 @@
   border-radius: 40px;
 }
 
+.check-list {
+  font-size: 22px;
+  color: #3d5a80
+}

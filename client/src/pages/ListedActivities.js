@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 
 
-const ListedActivities = ({allUsers}) => {
-    const [activities, setActivities] = useState([])
+const ListedActivities = ({allUsers, activities}) => {
+    // const [activities, setActivities] = useState([])
 
-  useEffect(() => {
-    fetch('/activities')
-    .then((r) => r.json())
-    .then(activities => setActivities(activities));
-  }, []);
-console.log(activities)
+//   useEffect(() => {
+//     fetch('/activities')
+//     .then((r) => r.json())
+//     .then(activities => setActivities(activities));
+//   }, []);
+// console.log(activities)
 
 const orderedActivities = [].concat(activities)
   .sort((a, b) => a.name > b.name ? 1 : -1)
