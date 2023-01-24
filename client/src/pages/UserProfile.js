@@ -34,8 +34,13 @@ const UserProfile = ({setUser, user}) => {
         },
         body: JSON.stringify(updateProfile)
     })
-    .then(r => r.json())
-    .then(setUser({...user, editProfile})) 
+    .then((r) => {
+        if (r.ok) {
+          r.json().then(setUser({...user, editProfile}));
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
 }
 
     return ( 
@@ -77,11 +82,9 @@ const UserProfile = ({setUser, user}) => {
            value={imageUrl}
            onChange={(e) => setImageUrl(e.target.value)}
          />
-         
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
-        
         <button className='newButton' type="submit">Save Changes</button>
         <Link to="/setup" >
             <button>Edit Activities</button>

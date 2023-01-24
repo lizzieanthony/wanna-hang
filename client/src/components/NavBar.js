@@ -16,7 +16,9 @@ const NavBar = ({user, setUser}) => {
             <div className="links">
                 <div>
                     <h2>Welcome, {user.first_name}!</h2>
+                    <Link to="/">
                     <button onClick={handleLogoutClick}>Logout</button>
+                    </Link>
                     <Link to="/edit_profile">
                     <button>Edit Profile</button>
                     </Link>  

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useParams} from 'react-router-dom';
+
 
 const SelectActivities = ({activities}) => {
+    const { id } = useParams()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
     );
@@ -16,6 +19,23 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
+const handleSubmit = (e) => {
+    e.preventDefault()
+    fetch("/user_activities", {
+        method: "POST",
+        headers: {
+           "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({activity_id: id})
+    })
+    .then((r => {
+        if (r.ok) {
+            r.json()
+            .then()
+        }
+    }))
+}
+
     return ( 
         <div className="check-list">
         <ul >
@@ -30,7 +50,7 @@ const orderedActivities = [].concat(activities)
                 checked={checkedState[index]}
                 onChange={() => handleOnChange(index)}
                 />
-                <label htmlFor={`custom-checkbox-${index}`}>{activity.name}</label>
+                <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
                 </ul>
             )
         }

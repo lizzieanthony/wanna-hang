@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({setUser}) => {
   const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const SignupForm = ({setUser}) => {
   const [password, setPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
+  const navigate= useNavigate();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -29,6 +31,7 @@ const SignupForm = ({setUser}) => {
         .then((r) => {
           if (r.ok) {
             r.json().then((user) => setUser(user));
+            navigate("/setup");
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -91,9 +94,7 @@ const SignupForm = ({setUser}) => {
             <p key={err}>{err}</p>
           ))}
         <button className='newButton' type="submit">Create Account</button>
-        
         </form>
-    
       </div>
      );
 }

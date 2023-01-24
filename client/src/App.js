@@ -35,10 +35,14 @@ useEffect(() => {
 }, []);
 console.log(activities)
 
-  if (!user) return <Login setUser={setUser} />
-
- 
-
+  if (!user) return (
+    <Router>
+    <Routes>
+      <Route path="/" element={<Login setUser={setUser} />}/>
+    </Routes> 
+    </Router>
+  )
+    
   console.log(allUsers)
 
   return (
