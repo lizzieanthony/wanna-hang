@@ -6,6 +6,7 @@ import AllUsersList from "./pages/AllUsersList";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import SelectActivities from "./pages/SelectActivities";
+import UserDetails from "./pages/UserDetails";
 import {useState, useEffect} from "react";
 
 
@@ -55,6 +56,7 @@ console.log(activities)
           <Route exact path="/setup" element={<SelectActivities activities={activities}/>}/>
           <Route exact path = "/all" element={<AllUsersList user={user} allUsers={allUsers} />} />
           <Route exact path="/edit_profile" element={<UserProfile user={user} setUser={setUser} />}/>
+          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} activities={activities} allUsers={allUsers} />} />
         </Routes>
       </div>
         
