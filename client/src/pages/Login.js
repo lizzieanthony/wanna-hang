@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
+import { UserContext } from "../context/user";
 
-const Login = ({setUser}) => {
+const Login = () => {
     const [showLogin, setShowLogin] = useState(true);
+    const { setUser} = useContext(UserContext);
 
     return (
         <div className="login-page">
