@@ -5,11 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const UserProfile = ({allUsers, setAllUsers}) => {
   const {user, setUser} = useContext(UserContext);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [bio, setBio] = useState("");
-  const [question, setQuestion] = useState("")
-  const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const ref = useRef(null);
   const navigate= useNavigate()
@@ -32,23 +27,17 @@ const UserProfile = ({allUsers, setAllUsers}) => {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    const updateProfile = {
-        first_name: firstName,
-        last_name: lastName,
-        bio: bio,
-        question: question,
-        image: imageUrl}
     fetch(`/users/${user.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(updateProfile)
+        body: JSON.stringify(user)
     })
     .then((r) => {
         if (r.ok) {
           r.json().then(editProfile);
-        //   console.log(user)
+          navigate("/")
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -77,35 +66,35 @@ const UserProfile = ({allUsers, setAllUsers}) => {
            required
            ref ={ref}
            defaultValue={user.first_name}
-           onChange={(e) => setFirstName(e.target.value)}
+           onChange={(e) => setUser({...user, first_name: e.target.value})}
          />
          <label>Last Name:</label>
          <input
            type="text"
            required
            defaultValue={user.last_name}
-           onChange={(e) => setLastName(e.target.value)}
+           onChange={(e) => setUser({...user, last_name: e.target.value})} 
          />
          <label>Tell us about yourself:</label>
          <input
            type="text"
            required
            defaultValue={user.bio}
-           onChange={(e) => setBio(e.target.value)}
+           onChange={(e) => setUser({...user, bio: e.target.value})} 
          />
          <label>Why do you want to join Wanna Hang?</label>
          <input
            type="text"
            required
            defaultValue={user.question}
-           onChange={(e) => setQuestion(e.target.value)}
+           onChange={(e) => setUser({...user, question: e.target.value})} 
          />
          <label>Image url:</label>
          <input
            type="text"
            required
            defaultValue={user.image}
-           onChange={(e) => setImageUrl(e.target.value)}
+           onChange={(e) => setUser({...user, image: e.target.value})} 
          />
          {errors.map((err) => (
             <p key={err}>{err}</p>
@@ -133,31 +122,22 @@ export default UserProfile;
 //   onChange={(e) => setUser({...user, first_name: e.target.value})}
 // />
 
-// <label>Last Name:</label>
-// <input
-//   type="text"
-//   required
-//   defaultValue={user.last_name}
-//   onChange={(e) => setLastName(e.target.value)}
-// />
-// <label>Tell us about yourself:</label>
-// <textarea
-//   type="text"
-//   required
-//   value={user.bio}
-//   onChange={(e) => setBio(e.target.value)}
-// />
-// <label>Why do you want to join Wanna Hang?</label>
-// <textarea
-//   type="text"
-//   required
-//   value={user.question}
-//   onChange={(e) => setQuestion(e.target.value)}
-// />
-// <label>Image url:</label>
-// <input
-//   type="text"
-//   required
-//   value={user.image}
-//   onChange={(e) => setImageUrl(e.target.value)}
-// />
+// const updateProfile = {
+    //     first_name: firstName,
+    //     last_name: lastName,
+    //     bio: bio,
+    //     question: question,
+    //     image: imageUrl}
+
+    //   const [formData, setFormData] = useState({
+//     first_name: "",
+//     last_name: "",
+//     bio: "",
+//     question: "",
+//     image: "",
+//   })
+//   const [firstName, setFirstName] = useState("");
+//   const [lastName, setLastName] = useState("");
+//   const [bio, setBio] = useState("");
+//   const [question, setQuestion] = useState("")
+//   const [imageUrl, setImageUrl] = useState("");
