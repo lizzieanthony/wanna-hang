@@ -76,35 +76,35 @@ const UserProfile = ({allUsers, setAllUsers}) => {
            type="text"
            required
            ref ={ref}
-           defaultValue={firstName}
+           defaultValue={user.first_name}
            onChange={(e) => setFirstName(e.target.value)}
          />
          <label>Last Name:</label>
          <input
            type="text"
            required
-           defaultValue={lastName}
+           defaultValue={user.last_name}
            onChange={(e) => setLastName(e.target.value)}
          />
          <label>Tell us about yourself:</label>
          <input
            type="text"
            required
-           value={bio}
+           defaultValue={user.bio}
            onChange={(e) => setBio(e.target.value)}
          />
          <label>Why do you want to join Wanna Hang?</label>
          <input
            type="text"
            required
-           value={question}
+           defaultValue={user.question}
            onChange={(e) => setQuestion(e.target.value)}
          />
          <label>Image url:</label>
          <input
            type="text"
            required
-           value={imageUrl}
+           defaultValue={user.image}
            onChange={(e) => setImageUrl(e.target.value)}
          />
          {errors.map((err) => (
@@ -123,13 +123,41 @@ const UserProfile = ({allUsers, setAllUsers}) => {
  
 export default UserProfile;
 
-// const editProfile = (updatedProfile) => {
-//     const updateAllUsers = allUsers.map((user) => {
-//         if (user.id === updatedProfile.id) {
-//             return updatedProfile 
-//         } else {
-//             return user  
-//         } 
-//     });
-//     setAllUsers(updateAllUsers)
-//   }
+
+// ~~~ to display user info and update it inline 
+
+// <label>First Name:</label>
+// <input
+//   type="text"
+//   defaultValue={user.first_name}
+//   onChange={(e) => setUser({...user, first_name: e.target.value})}
+// />
+
+// <label>Last Name:</label>
+// <input
+//   type="text"
+//   required
+//   defaultValue={user.last_name}
+//   onChange={(e) => setLastName(e.target.value)}
+// />
+// <label>Tell us about yourself:</label>
+// <textarea
+//   type="text"
+//   required
+//   value={user.bio}
+//   onChange={(e) => setBio(e.target.value)}
+// />
+// <label>Why do you want to join Wanna Hang?</label>
+// <textarea
+//   type="text"
+//   required
+//   value={user.question}
+//   onChange={(e) => setQuestion(e.target.value)}
+// />
+// <label>Image url:</label>
+// <input
+//   type="text"
+//   required
+//   value={user.image}
+//   onChange={(e) => setImageUrl(e.target.value)}
+// />
