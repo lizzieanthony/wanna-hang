@@ -15,7 +15,7 @@ class UserActivitiesController < ApplicationController
     end
 
     def destroy 
-        userActivity = current_user.user_activities.fin(params[:id])
+        userActivity = current_user.user_activities.find(params[:id])
         userActivity.destroy
         head :no_content
     end

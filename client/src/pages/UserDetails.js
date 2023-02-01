@@ -1,8 +1,9 @@
 import {useNavigate, useParams} from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 
-
-const UserDetails = ({user, setUser, activities, allUsers}) => {
+const UserDetails = ({ activities, allUsers}) => {
+    const {user} = useContext(UserContext);
     const [selectedUser, setSelectedUser] = useState()
     const {id} = useParams();
     const navigate = useNavigate();

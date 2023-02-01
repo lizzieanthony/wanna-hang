@@ -1,8 +1,10 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useContext} from 'react';
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom";
 
-
-const UserProfile = ({setUser, user}) => {
+const UserProfile = ({allUsers, setAllUsers}) => {
+  const {user, setUser} = useContext(UserContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
@@ -10,13 +12,22 @@ const UserProfile = ({setUser, user}) => {
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const ref = useRef(null);
+  const navigate= useNavigate()
+  const goBack = () => {
+      navigate(-1);
+  }
   
   const editProfile = (updatedProfile) => {
-    if (user.id === updatedProfile.id) {
-        return updatedProfile 
-    } else {
-        return user
-    }
+    const updateAllUsers = allUsers.map((user) => {
+        if (user.id === updatedProfile.id) {
+            return updatedProfile 
+        } else {
+            return user  
+        } 
+        
+    });
+    setUser(updatedProfile)
+    setAllUsers(updateAllUsers)
   }
 
   const handleUpdate = (e) => {
@@ -36,7 +47,8 @@ const UserProfile = ({setUser, user}) => {
     })
     .then((r) => {
         if (r.ok) {
-          r.json().then(setUser({...user, editProfile}));
+          r.json().then(editProfile);
+        //   console.log(user)
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -44,6 +56,19 @@ const UserProfile = ({setUser, user}) => {
 }
 
     return ( 
+        <div>
+        <div className="main">
+        <button onClick={goBack}>back</button>
+    <div className="user-preview" key={user.id}>
+      <div className="card-1">
+        <img src={user.image}alt="userImage"/>
+        <h3>{user.bio}</h3>
+        <h4>{user.question}</h4>
+        <h1>{user.first_name} {user.last_name}</h1>
+        <h4>{user.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
+      </div> 
+    </div>
+    </div>
         <div className="login-form">
         <form onSubmit={handleUpdate}>
          <label>First Name:</label>
@@ -92,15 +117,19 @@ const UserProfile = ({setUser, user}) => {
         </form>
     
       </div>
+      </div>
      );
 }
  
 export default UserProfile;
 
-// <label>Activities:</label>
-//          <input
-//            type="text"
-//            required
-//            value={imageUrl}
-//            onChange={(e) => setImageUrl(e.target.value)}
-//          />
+// const editProfile = (updatedProfile) => {
+//     const updateAllUsers = allUsers.map((user) => {
+//         if (user.id === updatedProfile.id) {
+//             return updatedProfile 
+//         } else {
+//             return user  
+//         } 
+//     });
+//     setAllUsers(updateAllUsers)
+//   }

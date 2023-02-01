@@ -12,7 +12,6 @@ const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
-
     setCheckedState(updatedCheckedState);
 }
   
@@ -38,6 +37,7 @@ const handleSubmit = (e) => {
 
     return ( 
         <div className="check-list">
+        <form onSubmit={handleSubmit}>
         <ul >
         {orderedActivities.map((activity, index) => {
             return (
@@ -55,7 +55,9 @@ const handleSubmit = (e) => {
             )
         }
         )}
+        <button className='newButton' type="submit">Save Activities</button>
         </ul>
+        </form>
         </div>
      );
 }

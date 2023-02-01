@@ -1,7 +1,18 @@
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/user";
 
-const NavBar = ({user, setUser}) => {
+const NavBar = () => {
+    const { user, setUser} = useContext(UserContext);
 
+    // const currentUser = (updatedUser) => {
+    //     if (user.id === updatedUser.id) {
+    //         return updatedUser 
+    //     } else {
+    //         return user  
+    //     } 
+    // }
+    
     function handleLogoutClick() {
         fetch("/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
