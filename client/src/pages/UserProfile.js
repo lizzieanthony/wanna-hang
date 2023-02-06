@@ -1,9 +1,9 @@
 import React, {useRef, useState, useContext} from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
-const UserProfile = ({allUsers, setAllUsers}) => {
+const UserProfile = ({allUsers, setAllUsers, activities}) => {
   const {user, setUser} = useContext(UserContext);
   const [errors, setErrors] = useState([]);
   const ref = useRef(null);
@@ -12,6 +12,7 @@ const UserProfile = ({allUsers, setAllUsers}) => {
       navigate(-1);
   }
   
+// profile form 
   const editProfile = (updatedProfile) => {
     const updateAllUsers = allUsers.map((user) => {
         if (user.id === updatedProfile.id) {
@@ -19,8 +20,8 @@ const UserProfile = ({allUsers, setAllUsers}) => {
         } else {
             return user  
         } 
-        
     });
+    // const updatedActivities= {...user, activities: updateAllUsers}
     setUser(updatedProfile)
     setAllUsers(updateAllUsers)
   }
@@ -42,6 +43,44 @@ const UserProfile = ({allUsers, setAllUsers}) => {
           r.json().then((err) => setErrors(err.errors));
         }
       });
+}
+
+// activity checkbox 
+
+const [checkedState, setCheckedState] = useState(
+    new Array(activities.length).fill(false)
+);
+
+const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+}
+
+const orderedActivities = [].concat(activities)
+.sort((a, b) => a.name > b.name ? 1 : -1)
+
+// delete user
+
+const onDeleteUser = (deleteUser) => {
+    const updatedAllUsers = allUsers.filter(user=> user.id !== deleteUser.id)
+    const updatedUsers = {allUsers: updatedAllUsers}
+    // syntax ? 
+    setUser({user: deleteUser}) 
+    setAllUsers(updatedUsers)
+}
+
+const handleDelete = () => {
+    fetch(`/users/${user.id}`, {
+        method: "DELETE"
+    })
+    .then(r => {
+        if (r.ok) {
+            onDeleteUser(user)
+        }
+        navigate("/")
+    })
 }
 
     return ( 
@@ -99,12 +138,29 @@ const UserProfile = ({allUsers, setAllUsers}) => {
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
+          <h3>Update your activities:</h3>
+        <ul >
+        {orderedActivities.map((activity, index) => {
+            return (
+                <ul key={index}>
+                <input 
+                type="checkbox"
+                id={`custom-checkbox-${index}`}
+                name={activity.name}
+                value={activity.name}
+                // defaultValue={user.activities}
+                checked={checkedState[index]}
+                onChange={() => handleOnChange(index)}
+                />
+                <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
+                </ul>
+            )
+        }
+        )}
+        </ul>
         <button className='newButton' type="submit">Save Changes</button>
-        <Link to="/setup" >
-            <button>Edit Activities</button>
-        </Link>
         </form>
-    
+        <button className='newButton' onClick={handleDelete}>Deactivate Account</button>
       </div>
       </div>
      );

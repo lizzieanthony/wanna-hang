@@ -54,7 +54,7 @@ console.log(activities)
           <Route path="/" element={<Home allUsers={allUsers} activities={activities}/>} />
           <Route exact path="/setup" element={<SelectActivities activities={activities}/>}/>
           <Route exact path = "/all" element={<AllUsersList user={user} allUsers={allUsers} />} />
-          <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} />}/>
+          <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} activities={activities} />}/>
           <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} activities={activities} allUsers={allUsers} />} />
         </Routes>
       </div>

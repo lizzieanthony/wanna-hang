@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams} from 'react-router-dom';
-
+import { UserContext } from "../context/user";
 
 const SelectActivities = ({activities}) => {
+    const {user, setUser} = useContext(UserContext);
     const { id } = useParams()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
@@ -17,6 +18,12 @@ const handleOnChange = (position) => {
   
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
+
+// addUserActivities = (userActivity) => {
+//     const newUserActivites= [...user.activities, userActivity]
+//     const filteredActivities = activities.filter(activity => activity.id == )
+
+// }
 
 const handleSubmit = (e) => {
     e.preventDefault()
