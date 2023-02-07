@@ -1,18 +1,20 @@
 import {Link} from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../context/user";
 
+const AllUsersList = ({allUsers}) => {
+    const {user} = useContext(UserContext);
 
-const AllUsersList = ({allUsers, user}) => {
+    const otherUsers = allUsers.filter(users => users.id !== user.id)
 
-    // const otherUsers = allUsers.filter(users => users.id !== user.id)
-
-    // const orderedUsers = [].concat(otherUsers)
-    //     .sort((a, b) => a.first_name > b.first_name ? 1 : -1)
+    const orderedUsers = [].concat(otherUsers)
+        .sort((a, b) => a.first_name > b.first_name ? 1 : -1)
 
     return ( 
         <div className="main">
         <br/>
         <br/>
-        {allUsers.map((user) => (
+        {orderedUsers.map((user) => (
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>

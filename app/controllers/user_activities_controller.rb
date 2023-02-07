@@ -23,7 +23,8 @@ class UserActivitiesController < ApplicationController
     private
 
     def user_activity_params
-        params.permit(:user_id, :activity_id)
+        # byebug
+        params.permit(:user_id, activity_ids: [])
     end
 
     def authorize 

@@ -63,12 +63,10 @@ const orderedActivities = [].concat(activities)
 
 // delete user
 
-const onDeleteUser = (deleteUser) => {
-    const updatedAllUsers = allUsers.filter(user=> user.id !== deleteUser.id)
-    const updatedUsers = {allUsers: updatedAllUsers}
-    // syntax ? 
-    setUser({user: deleteUser}) 
-    setAllUsers(updatedUsers)
+const onDeleteUser = (userToDelete) => {
+    const updatedAllUsers = allUsers.filter(user=> user.id !== userToDelete.id)
+    setUser(null) 
+    setAllUsers(updatedAllUsers)
 }
 
 const handleDelete = () => {
@@ -158,7 +156,7 @@ const handleDelete = () => {
         }
         )}
         </ul>
-        <button className='newButton' type="submit">Save Changes</button>
+        <button className='newButton' type="submit">Return Home</button>
         </form>
         <button className='newButton' onClick={handleDelete}>Deactivate Account</button>
       </div>
