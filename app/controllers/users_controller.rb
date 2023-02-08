@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params
-        params.permit(:first_name, :last_name, :email, :bio, :question, :image, :password, :password_confirmation)
+        params.permit(:first_name, :last_name, :email, :bio, :question, :image, :password, :password_confirmation, :activity_id, :user_activity_id)
     end
 
     def edit_user_params

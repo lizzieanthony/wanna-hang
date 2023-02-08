@@ -19,30 +19,41 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
-const addUserActivities = (activities) => {
-    if(checkedState === true) {
-        const eventId = activities.map((e) => (e.target.value))
-        const filteredActivities = activities.filter(activity => activity.id === eventId)
-        return setUser({...user, activities: filteredActivities})
-    } else return null;
-}
+
+// for loop let i = 0 e.target[i] e.target.for each? set the moment when you stop looping 
+// send user back with activities nexted so update user with activity object 
+// prepare what to send to server
+// i < 5 - how do we find 5 
 
 const handleSubmit = (e) => {
     e.preventDefault()
+    console.log( e.target)
+    let formActivityIds = [];
+    for (let i = 0; i < e.target.length ; i++ ){
+        formActivityIds[e.target.elements[i].getAttribute("name")] = e.target.elements[i].value; 
+    }
+    console.log(formActivityIds)
     // debugger
-    fetch("/user_activities", {
-        method: "POST",
-        headers: {
-           "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({activity_ids: []})
-    })
-    .then((r => {
-        if (r.ok) {
-            r.json()
-            .then(addUserActivities)
-        }
-    }))
+    const checkedActivitiesArray = () => {
+        if(checkedState === true){   
+            console.log(formActivityIds) 
+        }     
+    }
+
+    // console.log(checkedActivitiesArray)
+    // fetch("/user_activities", {
+    //     method: "POST",
+    //     headers: {
+    //        "Content-Type" : "application/json"
+    //     },
+    //     body: JSON.stringify({activity_ids: checkedActivitiesArray})
+    // })
+    // .then((r => {
+    //     if (r.ok) {
+    //         r.json()
+    //         .then(setUser(user))
+    //     }
+    // }))
 }
 
 console.log(checkedState)
@@ -64,6 +75,7 @@ console.log(checkedState)
                 />
                 <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
                 </ul>
+                
             )
         }
         )}
@@ -116,3 +128,39 @@ export default SelectActivities;
     // if true add e.target.value (activity id) to the array of user activities
     // set the user with the selected activities 
 //  loop through e.target[0].value to see if checked or not and if checked add id to array and send as body of the request activity ids[]
+
+// const checkedActivitiesArray = () => {
+//     let checkedActivities = [];
+//     for (let i = 0; i < e.target[i] ){
+//         const foundActivities = e.target[i].find(value => value === e.target.value )
+//         if (foundActivities) checkedActivities.push(foundActivities)   
+//     }
+//     return checkedActivities
+// }
+
+// const handleSetFilteredPosts = () => {
+//     let userPosts
+//     if (selectedCategory !== "default") {
+//       userPosts = user?.posts?.filter((post) => post?.user_id == user?.id && selectedCategory == post?.category_id)
+//     } else {
+//       userPosts = user?.posts?.filter((post) => post?.user_id == user?.id)
+//     }
+//     const uniqueUserPostIds = userPosts?.map(post => post?.id).filter((value, index, self) => self.indexOf(value) === index)
+//     const filteredUserPosts = []
+//     for (const postId of uniqueUserPostIds) {
+//       const foundPost = userPosts?.find(post => post.id === postId)
+//       if (foundPost) filteredUserPosts.push(foundPost)
+//     }
+//     setFilteredPosts(filteredUserPosts?.reverse())
+//   }
+// const addUserActivities = (activities) => {
+//     if(checkedState === true) {
+//         const eventId = activities.map((e) => (e.target.value))
+//         const filteredActivities = activities.filter(activity => activity.id === eventId)
+//         return setUser({...user, activities: filteredActivities})
+//     } else return null;
+// }
+
+ // const foundActivities = e.target[i].find(value => value === e.target[i].value )
+        // if (foundActivities) checkedActivities.push(foundActivities) 
+        // return checkedActivities

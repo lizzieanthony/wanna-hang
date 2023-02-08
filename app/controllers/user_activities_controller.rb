@@ -1,8 +1,6 @@
 class UserActivitiesController < ApplicationController
     before_action :authorize 
 
-    # do i need an index route if i can get the userActivities from fetching users? 
-
     def create 
         userActivity = current_user.user_activities.create!(user_activity_params)
         render json: userActivity
