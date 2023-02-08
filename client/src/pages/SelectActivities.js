@@ -19,41 +19,28 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
-
-// for loop let i = 0 e.target[i] e.target.for each? set the moment when you stop looping 
-// send user back with activities nexted so update user with activity object 
-// prepare what to send to server
-// i < 5 - how do we find 5 
-
 const handleSubmit = (e) => {
     e.preventDefault()
-    console.log( e.target)
+    // console.log( e.target)
     let formActivityIds = [];
-    for (let i = 0; i < e.target.length ; i++ ){
-        formActivityIds[e.target.elements[i].getAttribute("name")] = e.target.elements[i].value; 
+    for (let i = 0; i < e.target.length -1 ; i++ ){
+        if (e.target[i].checked) formActivityIds.push(parseInt(e.target.elements[i].value))
+        // debugger
     }
     console.log(formActivityIds)
-    // debugger
-    const checkedActivitiesArray = () => {
-        if(checkedState === true){   
-            console.log(formActivityIds) 
-        }     
-    }
-
-    // console.log(checkedActivitiesArray)
-    // fetch("/user_activities", {
-    //     method: "POST",
-    //     headers: {
-    //        "Content-Type" : "application/json"
-    //     },
-    //     body: JSON.stringify({activity_ids: checkedActivitiesArray})
-    // })
-    // .then((r => {
-    //     if (r.ok) {
-    //         r.json()
-    //         .then(setUser(user))
-    //     }
-    // }))
+    fetch("/user_activities", {
+        method: "POST",
+        headers: {
+           "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({activity_ids: formActivityIds})
+    })
+    .then((r => {
+        if (r.ok) {
+            r.json()
+            .then(setUser(user))
+        }
+    }))
 }
 
 console.log(checkedState)
@@ -88,29 +75,6 @@ console.log(checkedState)
  
 export default SelectActivities;
 
-// <div className="activityList" key={activity.id}>
-//                 <h2>{activity.name}</h2>
-//             </div>
-
-// See that state on the component is changing in response to what I click 
-
-// Handle submit function fetch request 
-// Url and config object
-// Do I have the route what’s the action what’s the code in the action 
-// What am I doing when I get it back 
-
-// All user activities for a user has the same user id
-
-// const addUserActivities = (userActivity) => {
-//     const filteredActivities = activities.filter(activity => activity.id === userActivity.index)
-//     if (checkedState === true) {
-//         return filteredActivities
-//     } else { return 
-//     }
-//     setUser({...user, activities: filteredActivities})
-// }
-
-
 //     const filteredActivities = activities.filter((activity) => {
 //         if (activity.id === userActivity.index) {
 //         }
@@ -138,6 +102,13 @@ export default SelectActivities;
 //     return checkedActivities
 // }
 
+// const checkedActivitiesArray = () => {
+    //     if(checkedState === true){   
+    //         console.log(formActivityIds) 
+    //     }     
+    // }
+    // console.log(checkedActivitiesArray)
+
 // const handleSetFilteredPosts = () => {
 //     let userPosts
 //     if (selectedCategory !== "default") {
@@ -153,6 +124,10 @@ export default SelectActivities;
 //     }
 //     setFilteredPosts(filteredUserPosts?.reverse())
 //   }
+  // for (const postId of uniqueUserPostIds) {
+        //       const foundPost = userPosts?.find(post => post.id === postId)
+        //       if (foundPost) filteredUserPosts.push(foundPost)
+
 // const addUserActivities = (activities) => {
 //     if(checkedState === true) {
 //         const eventId = activities.map((e) => (e.target.value))
@@ -164,3 +139,14 @@ export default SelectActivities;
  // const foundActivities = e.target[i].find(value => value === e.target[i].value )
         // if (foundActivities) checkedActivities.push(foundActivities) 
         // return checkedActivities
+
+    //   previoous for loop  
+            // if (e.target[i].checked ) {
+            //     formActivityIds[e.target.elements[i].getAttribute("value")] = e.target.elements[i].value; 
+            // }
+
+            // for loop let i = 0 e.target[i] e.target.for each? set the moment when you stop looping 
+// send user back with activities nexted so update user with activity object 
+// prepare what to send to server
+// i < 5 - how do we find 5 '=
+// 
