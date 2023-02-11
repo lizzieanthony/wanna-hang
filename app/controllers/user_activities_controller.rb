@@ -1,8 +1,16 @@
 class UserActivitiesController < ApplicationController
     before_action :authorize 
 
-    def create 
-        userActivity = current_user.user_activities.create!(user_activity_params)
+     # def create
+    #     pry
+    #     activity = user_activities.new(activity_params.each_slice(1).to_h)
+    #     userActivity = current_user.user_activities.create!(user_activity_params.merge(activity_id: activity.id))
+    #     render json: userActivity
+    # end
+
+    def create
+        pry
+        userActivity = current_user.user_activities.create!(user_activity_params.each {|x| puts x})
         render json: userActivity
     end
 
@@ -21,7 +29,6 @@ class UserActivitiesController < ApplicationController
     private
 
     def user_activity_params
-        # byebug
         params.permit(:user_id, activity_ids: [])
     end
 
