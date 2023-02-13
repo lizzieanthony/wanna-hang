@@ -4,7 +4,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :activities
   has_many :user_activities
 
-  # def user_activity
+  # def activity_detail
   #   {activity_id: object.activity.id, name: object.activity.name}
   # end
 end

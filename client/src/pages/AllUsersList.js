@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
 
 const AllUsersList = ({allUsers, activities}) => {
@@ -12,28 +12,43 @@ const AllUsersList = ({allUsers, activities}) => {
     const orderedUsers = [].concat(otherUsers)
         .sort((a, b) => a.first_name > b.first_name ? 1 : -1)
 
-    const filterByActivity = activity => {
-        debugger
-        setFilteredUsers(
-            allUsers.filter(user => {
-                return user.activities.name === activity.name         
-            })
-        )
-    }
+    // const filterByActivity = activity => {
+    //     debugger
+    //     setFilteredUsers(
+    //         allUsers.filter(user => user.activities.map((activity) => activity.id) == activity.id         
+    //         )
+    //     )
+    // }
+    
+      useEffect(() => {
+        setFilteredUsers(orderedUsers)
+      }, [allUsers])
+    
+      useEffect(() => {
+        // debugger
+        if (selectedActivity === "default") {
+          setFilteredUsers(orderedUsers)
+        }
+        else {
+          const filteredUsers = allUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+          setFilteredUsers(filteredUsers)
+        }
+      }, [selectedActivity])
+
 
     return ( 
         <div className="main">
-        <select onChange={e => filterByActivity(e.target.value)}>
-            <option value="" disabled default selected>
-                Filter By Activity
+        <select value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)}>
+            <option value="default">
+                All Users
             </option>
             {activities.map(activity => {
-                return <option key={activity}>{activity.name}</option>
+                return <option key={activity.id} value={activity.id} name={activity.name}>{activity.name}</option>
         })}
         </select>
         <br/>
         <br/>
-        {orderedUsers.map((user) => (
+        {filteredUsers.map((user) => (
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>
