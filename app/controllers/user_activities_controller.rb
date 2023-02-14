@@ -9,7 +9,7 @@ class UserActivitiesController < ApplicationController
     # end
 
     def create
-        pry
+        # pry
         userActivity = current_user.user_activities.create!(user_activity_params.each {|x| puts x})
         render json: userActivity
     end

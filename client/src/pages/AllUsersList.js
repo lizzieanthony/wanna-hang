@@ -2,27 +2,26 @@ import {Link} from "react-router-dom";
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
 
-const AllUsersList = ({allUsers, activities}) => {
+const AllUsersList = ({ activities}) => {
     const {user} = useContext(UserContext);
+    const [allUsers, setAllUsers] = useState([])
     const [filteredUsers, setFilteredUsers] = useState(allUsers)
     const [selectedActivity, setSelectedActivity] = useState(null)
+
+    useEffect(() => {
+        fetch('/users')
+        .then((r) => r.json())
+        .then(allUsers => setAllUsers(allUsers));
+    }, []);
 
     const otherUsers = allUsers.filter(users => users.id !== user.id)
 
     const orderedUsers = [].concat(otherUsers)
         .sort((a, b) => a.first_name > b.first_name ? 1 : -1)
-
-    // const filterByActivity = activity => {
-    //     debugger
-    //     setFilteredUsers(
-    //         allUsers.filter(user => user.activities.map((activity) => activity.id) == activity.id         
-    //         )
-    //     )
-    // }
     
-      useEffect(() => {
-        setFilteredUsers(orderedUsers)
-      }, [allUsers])
+    useEffect(() => {
+        setFilteredUsers(orderedUsers) 
+    }, [allUsers])
     
       useEffect(() => {
         // debugger
@@ -30,7 +29,7 @@ const AllUsersList = ({allUsers, activities}) => {
           setFilteredUsers(orderedUsers)
         }
         else {
-          const filteredUsers = allUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+          const filteredUsers = orderedUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
           setFilteredUsers(filteredUsers)
         }
       }, [selectedActivity])
@@ -64,3 +63,12 @@ const AllUsersList = ({allUsers, activities}) => {
 }
  
 export default AllUsersList;
+
+
+ // const filterByActivity = activity => {
+    //     debugger
+    //     setFilteredUsers(
+    //         allUsers.filter(user => user.activities.map((activity) => activity.id) == activity.id         
+    //         )
+    //     )
+    // }

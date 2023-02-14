@@ -34,7 +34,7 @@ useEffect(() => {
   .then((r) => r.json())
   .then(activities => setActivities(activities));
 }, []);
-console.log(activities)
+// console.log(activities)
 
   if (!user) return (
     <Router>
@@ -44,7 +44,7 @@ console.log(activities)
     </Router>
   )
     
-  console.log(allUsers)
+  // console.log(allUsers)
 
   return (
     <Router>
@@ -62,8 +62,7 @@ console.log(activities)
   );
 }
 
-// <Route exact path="/edit_profile" element={<UserProfile setUser={setUser} />}/>
-// <Route exact path="/login" element={<Login setUser={setUser} />}/>
+// need to reorganize where users if fetched 
 
 
 export default App;
