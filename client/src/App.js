@@ -44,7 +44,7 @@ useEffect(() => {
     </Router>
   )
     
-  // console.log(allUsers)
+  console.log(allUsers)
 
   return (
     <Router>

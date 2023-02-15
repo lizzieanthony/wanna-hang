@@ -39,6 +39,7 @@ const handleSubmit = (e) => {
         if (r.ok) {
             r.json()
             .then(setUser(user))
+            // .then(setAllUsers())
         }
     }))
 }
@@ -48,7 +49,8 @@ console.log(checkedState)
     return ( 
         <div className="check-list">
         <form onSubmit={handleSubmit}>
-        <ul >
+        <div >
+        <h5>Check the activities you are interested in</h5>
         {orderedActivities.map((activity, index) => {
             return (
                 <ul key={index}>
@@ -67,7 +69,7 @@ console.log(checkedState)
         }
         )}
         <button className='newButton' type="submit">Save Activities</button>
-        </ul>
+        </div>
         </form>
         </div>
      );

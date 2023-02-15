@@ -34,7 +34,7 @@
   padding: 20px;
   text-align: center;
   background-color: #98c1d9;
-  border-radius: 10%;
+  border-radius: 8px;
   color: #3d5a80;
   box-shadow: 0px 0px 10px #3d5a80;
 }
@@ -59,6 +59,7 @@
   padding: 6px 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
+  border-radius: 8px;
   box-sizing: border-box;
   display: block;
   /* opacity: .6; */
@@ -153,7 +154,7 @@
   width: 600px;
   padding: 10px 8px;
   margin: 30px auto ;
-  border-radius: 40px;
+  border-radius: 10px;
   box-shadow: 0px 0px 10px #3d5a80;
   background-color: #98c1d9;
 }
@@ -176,10 +177,61 @@
 .card-1 img {
   width: 200px;
   height: 200px;
-  border-radius: 40px;
+  border-radius: 10px;
 }
 
 .check-list {
   font-size: 22px;
   color: #3d5a80
+}
+
+/* EDIT USER */
+
+.edit-user {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+/* SELECT ACTIVITIES */
+
+.check-list {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #98c1d9;
+  border-radius: 8px;
+  text-align: center;
+  color: #3d5a80;
+  box-shadow: 0px 0px 10px #3d5a80;
+}
+.check-list div{
+  text-align: center;
+}
+.check-list ul {
+  font-size: 16px;
+  width: 100%;
+  padding: 6px 10px;
+  text-align: left;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 8px;
+  /* opacity: .6; */
+  background-color: #e0fbfc;
+  color: #ee6c4d
+}
+.check-list button {
+  background: #3d5a80;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.check-list button:hover{
+  background-color: #ee6c4d;
+  color: #e0fbfc;
 }

@@ -96,7 +96,7 @@ const handleDelete = () => {
     </div>
     </div>
         <div className="login-form">
-        <form onSubmit={handleUpdate}>
+        <form className="edit-user" onSubmit={handleUpdate}>
          <label>First Name:</label>
          <input
            type="text"
@@ -136,26 +136,7 @@ const handleDelete = () => {
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
-          <h3>Update your activities:</h3>
-        <ul >
-        {orderedActivities.map((activity, index) => {
-            return (
-                <ul key={index}>
-                <input 
-                type="checkbox"
-                id={`custom-checkbox-${index}`}
-                name={activity.name}
-                value={activity.name}
-                // defaultValue={user.activities}
-                checked={checkedState[index]}
-                onChange={() => handleOnChange(index)}
-                />
-                <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
-                </ul>
-            )
-        }
-        )}
-        </ul>
+          
         <button className='newButton' type="submit">Return Home</button>
         </form>
         <button className='newButton' onClick={handleDelete}>Deactivate Account</button>
@@ -195,3 +176,24 @@ export default UserProfile;
 //   const [bio, setBio] = useState("");
 //   const [question, setQuestion] = useState("")
 //   const [imageUrl, setImageUrl] = useState("");
+
+// <h3>Update your activities:</h3>
+//         <ul >
+//         {orderedActivities.map((activity, index) => {
+//             return (
+//                 <ul key={index}>
+//                 <input 
+//                 type="checkbox"
+//                 id={`custom-checkbox-${index}`}
+//                 name={activity.name}
+//                 value={activity.name}
+//                 // defaultValue={user.activities}
+//                 checked={checkedState[index]}
+//                 onChange={() => handleOnChange(index)}
+//                 />
+//                 <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
+//                 </ul>
+//             )
+//         }
+//         )}
+//         </ul>
