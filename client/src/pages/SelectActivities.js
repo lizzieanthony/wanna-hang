@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { useParams} from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/user";
 
-const SelectActivities = ({activities}) => {
+const SelectActivities = ({activities, allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
     const { id } = useParams()
+    const navigate= useNavigate()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
     );
@@ -18,6 +19,20 @@ const handleOnChange = (position) => {
   
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
+
+// updatedUsers= [...allUsers, user]
+const editProfile = (updatedProfile) => {
+    const updateAllUsers = allUsers.map((user) => {
+        if (user.id === updatedProfile.id) {
+            return updatedProfile 
+        } else {
+            return user  
+        } 
+    });
+    // const updatedActivities= {...user, activities: updateAllUsers}
+    setUser(updatedProfile)
+    setAllUsers(updateAllUsers)
+  }
 
 const handleSubmit = (e) => {
     e.preventDefault()
@@ -38,7 +53,8 @@ const handleSubmit = (e) => {
     .then((r => {
         if (r.ok) {
             r.json()
-            .then(setUser(user))
+            .then(editProfile)
+            navigate("/")
             // .then(setAllUsers())
         }
     }))

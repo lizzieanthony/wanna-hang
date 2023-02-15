@@ -2,8 +2,8 @@ import React, {useState, useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 
-const SignupForm = () => {
-    const {setUser} = useContext(UserContext);
+const SignupForm = ({allUsers, setAllUsers}) => {
+    const {user, setUser} = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -15,6 +15,10 @@ const SignupForm = () => {
   const [errors, setErrors] = useState([]);
   const navigate= useNavigate();
 
+  // const newUser = () => {
+  //   const updatedUsers = [...allUsers, user]
+  //   setAllUsers(updatedUsers)
+  // }
     function handleSubmit(e) {
         e.preventDefault();
         const user = {email: email,
@@ -33,7 +37,13 @@ const SignupForm = () => {
         })
         .then((r) => {
           if (r.ok) {
-            r.json().then((user) => setUser(user));
+            r.json().then((user) => setUser(user))
+            
+            // .then(user=> {
+            //   const updatedUsers = [...allUsers, user]
+            //   
+            //   setAllUsers(updatedUsers)
+            // });
             navigate("/setup");
           } else {
             r.json().then((err) => setErrors(err.errors));

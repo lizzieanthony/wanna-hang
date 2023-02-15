@@ -51,15 +51,15 @@ const [checkedState, setCheckedState] = useState(
     new Array(activities.length).fill(false)
 );
 
-const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-    setCheckedState(updatedCheckedState);
-}
+// const handleOnChange = (position) => {
+//     const updatedCheckedState = checkedState.map((item, index) =>
+//       index === position ? !item : item
+//     );
+//     setCheckedState(updatedCheckedState);
+// }
 
-const orderedActivities = [].concat(activities)
-.sort((a, b) => a.name > b.name ? 1 : -1)
+// const orderedActivities = [].concat(activities)
+// .sort((a, b) => a.name > b.name ? 1 : -1)
 
 // delete user
 

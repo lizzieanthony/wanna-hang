@@ -3,7 +3,7 @@ import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import { UserContext } from "../context/user";
 
-const Login = () => {
+const Login = ({allUsers, setAllUsers}) => {
     const [showLogin, setShowLogin] = useState(true);
     const { setUser} = useContext(UserContext);
 
@@ -27,7 +27,7 @@ const Login = () => {
             </div>
         ) : (
           <div>
-          <SignupForm setUser={setUser} />
+          <SignupForm setAllUsers={setAllUsers} allUsers={allUsers} />
           <br />
           <p>Already have an account?
           <br />
