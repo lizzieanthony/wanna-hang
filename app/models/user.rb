@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password 
     
-    has_many :user_activities 
+    has_many :user_activities, dependent: :destroy
     has_many :activities, through: :user_activities
 
     validates :email, presence: true, uniqueness: true

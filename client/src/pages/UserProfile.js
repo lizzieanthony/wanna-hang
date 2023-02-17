@@ -47,9 +47,9 @@ const UserProfile = ({allUsers, setAllUsers, activities}) => {
 
 // activity checkbox 
 
-const [checkedState, setCheckedState] = useState(
-    new Array(activities.length).fill(false)
-);
+// const [checkedState, setCheckedState] = useState(
+//     new Array(activities.length).fill(false)
+// );
 
 // const handleOnChange = (position) => {
 //     const updatedCheckedState = checkedState.map((item, index) =>

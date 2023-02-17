@@ -4,7 +4,6 @@ import { UserContext } from "../context/user";
 
 const UserDetails = ({ activities, allUsers}) => {
     const {user} = useContext(UserContext);
-    const [selectedUser, setSelectedUser] = useState()
     const {id} = useParams();
     const navigate = useNavigate();
 	const goBack = () => {

@@ -1,14 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/user";
 
-const SelectActivities = ({activities, allUsers, setAllUsers}) => {
+const SelectActivities = ({activities}) => {
     const {user, setUser} = useContext(UserContext);
     const { id } = useParams()
+    const [allUsers, setAllUsers] = useState([])
+
     const navigate= useNavigate()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
     );
+
+    useEffect(() => {
+        fetch('/users')
+        .then((r) => r.json())
+        .then(allUsers => setAllUsers(allUsers));
+      }, []);
 
 const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -20,18 +28,10 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
-// updatedUsers= [...allUsers, user]
-const editProfile = (updatedProfile) => {
-    const updateAllUsers = allUsers.map((user) => {
-        if (user.id === updatedProfile.id) {
-            return updatedProfile 
-        } else {
-            return user  
-        } 
-    });
-    // const updatedActivities= {...user, activities: updateAllUsers}
-    setUser(updatedProfile)
-    setAllUsers(updateAllUsers)
+  const newUser = (addedUser) => {
+    const updatedUsers = [...allUsers, addedUser]
+    setUser(addedUser)
+    setAllUsers(updatedUsers)
   }
 
 const handleSubmit = (e) => {
@@ -53,10 +53,9 @@ const handleSubmit = (e) => {
     .then((r => {
         if (r.ok) {
             r.json()
-            .then(editProfile)
+            .then(newUser)
             navigate("/")
-            // .then(setAllUsers())
-        }
+            }
     }))
 }
 
@@ -168,3 +167,17 @@ export default SelectActivities;
 // prepare what to send to server
 // i < 5 - how do we find 5 '=
 // 
+
+// updatedUsers= [...allUsers, user]
+// const addActivities = (updatedProfile) => {
+//     const updateAllUsers = allUsers.map((user) => {
+//         if (user.id === updatedProfile.id) {
+//             return updatedProfile 
+//         } else {
+//             return user  
+//         } 
+//     });
+//     // const updatedActivities= {...user, activities: updateAllUsers}
+//     setUser(updatedProfile)
+//     setAllUsers(updateAllUsers)
+//   }

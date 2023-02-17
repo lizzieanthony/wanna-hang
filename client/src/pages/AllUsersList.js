@@ -29,8 +29,8 @@ const AllUsersList = ({ activities}) => {
           setFilteredUsers(orderedUsers)
         }
         else {
-          const filteredUsers = orderedUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
-          setFilteredUsers(filteredUsers)
+          const activityFilteredUsers = orderedUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+          setFilteredUsers(activityFilteredUsers)
         }
       }, [selectedActivity])
 

@@ -1,8 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 
-const SignupForm = ({allUsers, setAllUsers}) => {
+const SignupForm = ({ allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
 
   const [email, setEmail] = useState("");
@@ -15,13 +15,27 @@ const SignupForm = ({allUsers, setAllUsers}) => {
   const [errors, setErrors] = useState([]);
   const navigate= useNavigate();
 
-  // const newUser = () => {
-  //   const updatedUsers = [...allUsers, user]
-  //   setAllUsers(updatedUsers)
+  // const navigateToSetup = () => {
+
+  //   navigate("/setup")
+
   // }
+
+//   useEffect(() => {
+//     const updatedUsers = [...allUsers, user]
+//     setUser(user)
+//     setAllUsers(updatedUsers)
+// }, [])
+
+  const newUser = (addedUser) => {
+    const updatedUsers = [...allUsers, addedUser]
+    setUser(addedUser)
+    setAllUsers(updatedUsers)
+  }
+
     function handleSubmit(e) {
         e.preventDefault();
-        const user = {email: email,
+        const userInfo = {email: email,
             first_name: firstName,
             last_name: lastName,
             bio: bio,
@@ -33,17 +47,11 @@ const SignupForm = ({allUsers, setAllUsers}) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user)
+          body: JSON.stringify(userInfo)
         })
         .then((r) => {
           if (r.ok) {
-            r.json().then((user) => setUser(user))
-            
-            // .then(user=> {
-            //   const updatedUsers = [...allUsers, user]
-            //   
-            //   setAllUsers(updatedUsers)
-            // });
+            r.json().then(newUser)
             navigate("/setup");
           } else {
             r.json().then((err) => setErrors(err.errors));
@@ -117,3 +125,21 @@ export default SignupForm;
 // <div className='newButton'>
 //           <input type="submit" value="Submit" />
 //           </div>
+
+// r.json().then((newUser) => {
+                //   const allUsersWithNew = [...allUsers, newUser]
+                //   setAllUsers(allUsersWithNew)
+
+                  // r.json().then((user) => setUser(user))
+            // .then(newUser)
+            // .then((allUsers) => setAllUsers([...allUsers, user]))
+
+            // .then(user=> {
+            //   const updatedUsers = [...allUsers, user]
+            //   //  console.log(updatedUsers)
+            //   //  console.log(user)
+            //   //  console.log(allUsers)
+            //   setAllUsers(updatedUsers)
+            // }
+            // );
+            
