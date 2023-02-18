@@ -12,7 +12,6 @@ const NavBar = () => {
     //         return user  
     //     } 
     // }
-    
     function handleLogoutClick() {
         fetch("/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {

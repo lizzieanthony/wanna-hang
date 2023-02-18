@@ -23,6 +23,18 @@ function App() {
     });
   }, []);
 
+  // useEffect(() => {
+  //   fetch("/me").then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => {
+  //         if (user !== null) {
+  //           setUser(user)
+  //         }
+  //       })
+  //     }
+  //   })
+  // }, [])
+
   useEffect(() => {
     fetch('/users')
     .then((r) => r.json())
@@ -37,17 +49,17 @@ useEffect(() => {
 // console.log(activities)
 
   if (!user) return (
-    <Router>
-    <Routes>
-    <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
-    </Routes> 
-    </Router>
+    <div>
+      <Routes>
+        <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
+      </Routes> 
+    </div>
   )
     
   console.log(allUsers)
 
   return (
-    <Router>
+    <div>
     <NavBar />
       <div className="content">
         <Routes > 
@@ -55,10 +67,11 @@ useEffect(() => {
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
           <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} activities={activities} />}/>
-          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} activities={activities} allUsers={allUsers} />} />
-        </Routes>
+          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} />} />
+
+          </Routes>
       </div>
-    </Router>
+    </div>
   );
 }
 
@@ -66,6 +79,5 @@ useEffect(() => {
 
 
 export default App;
-
 
 

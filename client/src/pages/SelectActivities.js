@@ -1,22 +1,23 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/user";
+import AllUsersList from "./AllUsersList";
 
-const SelectActivities = ({activities}) => {
+const SelectActivities = ({activities, allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
     const { id } = useParams()
-    const [allUsers, setAllUsers] = useState([])
+    // const [allUsers, setAllUsers] = useState([])
 
     const navigate= useNavigate()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
     );
 
-    useEffect(() => {
-        fetch('/users')
-        .then((r) => r.json())
-        .then(allUsers => setAllUsers(allUsers));
-      }, []);
+    // useEffect(() => {
+    //     fetch('/users')
+    //     .then((r) => r.json())
+    //     .then(allUsers => setAllUsers(allUsers));
+    //   }, []);
 
 const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -28,11 +29,31 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
-  const newUser = (addedUser) => {
-    const updatedUsers = [...allUsers, addedUser]
-    setUser(addedUser)
-    setAllUsers(updatedUsers)
-  }
+//   const newUser = (activities) => {
+//     const newUserActivities = {...user.activities, activities}
+//     // user.activities = newUserActivities
+//     debugger
+//     const filteredUsers = allUsers.filter(user => user.id !== activities.users.map((user) => user.id))
+//     const newUsers = [...filteredUsers, user]
+    
+//     // const updatedUsers = [...allUsers, addedUser]
+//     setUser(user)
+//     setAllUsers(newUsers)
+//   }
+
+// const newUser = (activities, ) => {
+//     const newUserActivities = {...user.activities, activities}
+//     // if user === id replace with new user object with updated activited if not return user 
+//     const updatedUsers = [...allUsers, newUserActivities]
+//     setUser(user)
+//     setAllUsers(updatedUsers)
+// }
+
+// const newUser = (addedUser) => {
+//     const updatedUsers = [...allUsers, addedUser]
+//     setUser(addedUser)
+//     setAllUsers(updatedUsers)
+//   }
 
 const handleSubmit = (e) => {
     e.preventDefault()
@@ -53,7 +74,22 @@ const handleSubmit = (e) => {
     .then((r => {
         if (r.ok) {
             r.json()
-            .then(newUser)
+            // .then(newUser)
+            // .then((user) => setUser(user))
+            .then(userObj => {
+                const updateAllUsers = allUsers.map(obj => {
+                    if (obj.id === user.id) { debugger
+                        // user.activities.push(addActivities)
+                        return userObj 
+                    } else {
+                        return obj
+                    }
+                })
+                setUser(userObj)
+                setAllUsers(updateAllUsers)
+            })
+            // .then((user) => setUser(user))
+            // .then((allUsers) => setAllUsers(allUsers))
             navigate("/")
             }
     }))
