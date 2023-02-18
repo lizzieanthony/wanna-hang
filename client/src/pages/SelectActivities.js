@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
-import { useParams, useNavigate} from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/user";
-import AllUsersList from "./AllUsersList";
 
 const SelectActivities = ({activities, allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
-    const { id } = useParams()
+    // const { id } = useParams()
     // const [allUsers, setAllUsers] = useState([])
 
     const navigate= useNavigate()

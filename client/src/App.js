@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import AllUsersList from "./pages/AllUsersList";
@@ -16,37 +16,28 @@ function App() {
   const [activities, setActivities] = useState([])
     
   useEffect(() => {
+    console.log("1")
     fetch('/me').then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
-  }, []);
-
-  // useEffect(() => {
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => {
-  //         if (user !== null) {
-  //           setUser(user)
-  //         }
-  //       })
-  //     }
-  //   })
-  // }, [])
+  }, [setUser]);
 
   useEffect(() => {
+    console.log("2")
+
     fetch('/users')
     .then((r) => r.json())
     .then(allUsers => setAllUsers(allUsers));
+
+    fetch('/activities')
+    .then((r) => r.json())
+    .then(activities => setActivities(activities));
+
 }, []);
 
-useEffect(() => {
-  fetch('/activities')
-  .then((r) => r.json())
-  .then(activities => setActivities(activities));
-}, []);
-// console.log(activities)
+console.log("in the app", allUsers, activities)
 
   if (!user) return (
     <div>
@@ -56,7 +47,6 @@ useEffect(() => {
     </div>
   )
     
-  console.log(allUsers)
 
   return (
     <div>
@@ -75,9 +65,12 @@ useEffect(() => {
   );
 }
 
-// need to reorganize where users if fetched 
-
-
 export default App;
 
+// need to reorganize where users if fetched 
 
+// useEffect(() => {
+//   fetch('/activities')
+//   .then((r) => r.json())
+//   .then(activities => setActivities(activities));
+// }, []);

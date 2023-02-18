@@ -1,5 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 
 const UserDetails = ({ allUsers}) => {
@@ -10,7 +10,7 @@ const UserDetails = ({ allUsers}) => {
 		navigate(-1);
 	}
 
-    const singleUser = allUsers.find(obj => obj.id == id)
+    const singleUser = allUsers.find(obj => obj.id === id)
 
     return ( 
         <div className="main">

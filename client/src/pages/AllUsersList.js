@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../context/user";
 
 const AllUsersList = ({ activities, allUsers}) => {
@@ -9,7 +9,7 @@ const AllUsersList = ({ activities, allUsers}) => {
     // should be a ternary or condition in the body if slected activitiy is default then selected is all, if not then filter through 
     const [selectedActivity, setSelectedActivity] = useState("default")
 
-    console.log("out of useEffect")
+    console.log("all users list")
 
     const otherUsers = allUsers?.filter(users => users.id !== user.id)
 

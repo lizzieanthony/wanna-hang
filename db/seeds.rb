@@ -54,3 +54,5 @@ end
 # user.all.each 
 
 puts "Users Seeded ⏳"
+
+UserActivity.create(user_id: User.all[rand(0..20)].id, activity_id: Activity.all[rand(0..5)].id)
