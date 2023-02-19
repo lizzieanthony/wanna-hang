@@ -47,7 +47,7 @@ const AllUsersList = ({ activities, allUsers}) => {
     //   }, [selectedActivity])
 
     // console.log(filteredUsers)
-
+    console.log(allUsers)
     return ( 
         <div className="main">
         <select value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)}>
@@ -64,6 +64,7 @@ const AllUsersList = ({ activities, allUsers}) => {
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>
+                <img src={user.image}alt="userImage"/>
                 <h3>{user.bio}</h3>
                 <h1>{user.first_name}</h1>
             </Link>
@@ -85,4 +86,3 @@ export default AllUsersList;
     //     )
     // }
 
-    // <img src={user.image}alt="userImage"/>

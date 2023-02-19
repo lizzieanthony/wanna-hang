@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :matches
   resources :users
   resources :activities 
   resources :user_activities 

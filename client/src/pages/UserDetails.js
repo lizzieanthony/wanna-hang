@@ -9,8 +9,11 @@ const UserDetails = ({ allUsers}) => {
 	const goBack = () => {
 		navigate(-1);
 	}
-
-    const singleUser = allUsers.find(obj => obj.id === id)
+  console.log(allUsers)
+  
+    const singleUser = allUsers.find(obj => obj.id === parseInt(id))
+    
+    console.log(singleUser)
 
     return ( 
         <div className="main">
@@ -22,7 +25,7 @@ const UserDetails = ({ allUsers}) => {
             <h4>{singleUser.question}</h4>
             <h1>{singleUser.first_name} {singleUser.last_name}</h1>
             <h4>{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
-            <button>Connect with {singleUser.first_name}</button>
+            <button>Match with {singleUser.first_name}</button>
           </div> 
         </div>
         </div>

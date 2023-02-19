@@ -51,8 +51,15 @@ lizzie = User.create!(
     )
 end
 
-# user.all.each 
+UserActivity.create(user_id: User.all[rand(0..20)].id, activity_id: Activity.all[rand(0..5)].id)
+
+# 5.times do
+#     UserActivity.create(
+#         user_id: User.all[rand(0..20)].id,
+#         activity_id: Activity.all[rand(0..5)].id
+#     )
+# end
+
 
 puts "Users Seeded ⏳"
 
-UserActivity.create(user_id: User.all[rand(0..20)].id, activity_id: Activity.all[rand(0..5)].id)
