@@ -15,12 +15,6 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
   const [errors, setErrors] = useState([]);
   const navigate= useNavigate();
 
-  // const navigateToSetup = () => {
-
-  //   navigate("/setup")
-
-  // }
-
 //   useEffect(() => {
 //     const updatedUsers = [...allUsers, user]
 //     setUser(user)
@@ -74,14 +68,14 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
            type="text"
            required
            value={firstName}
-           onChange={(e) => setFirstName(e.target.value)}
+           onChange={(e) => setFirstName(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
          />
          <label>Last Name:</label>
          <input
            type="text"
            required
            value={lastName}
-           onChange={(e) => setLastName(e.target.value)}
+           onChange={(e) => setLastName(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
          />
          <label>Tell us about yourself:</label>
          <input

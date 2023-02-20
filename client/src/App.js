@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useParams } from "react-router-dom"
+import {useState, useEffect, useContext} from "react";
+import {UserContext} from "./context/user";
 import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import AllUsersList from "./pages/AllUsersList";
@@ -6,17 +8,16 @@ import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import SelectActivities from "./pages/SelectActivities";
 import UserDetails from "./pages/UserDetails";
-import {useState, useEffect, useContext} from "react";
-import {UserContext} from "./context/user";
-
 
 function App() {
   const { user, setUser} = useContext(UserContext);
   const [allUsers, setAllUsers] = useState([])
   const [activities, setActivities] = useState([])
-    
+  const [otherUser, setOtherUser] = useState("")
+  const [matches, setMatches] = useState([])
+  const {id} = useParams();
+
   useEffect(() => {
-    console.log("1")
     fetch('/me').then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -25,8 +26,6 @@ function App() {
   }, [setUser]);
 
   useEffect(() => {
-    console.log("2")
-
     fetch('/users')
     .then((r) => r.json())
     .then(allUsers => setAllUsers(allUsers));
@@ -36,6 +35,23 @@ function App() {
     .then(activities => setActivities(activities));
 
 }, []);
+
+const usersMatch = () => {
+  const selectedUser = allUsers.find(obj => obj.id === parseInt(id))
+  console.log(selectedUser)
+  fetch("/matches", {
+    method: "POST",
+    headers: {"Content-Type" : "application/json"},
+    body: JSON.stringify({user_id: user.id, user2_id: selectedUser})
+  })
+  .then(r => {
+    if (r.ok) {
+        r.json().then(newMatch => setMatches(newMatch))
+    } else {
+        r.json().then(error => console.log(error))
+    }
+  })
+}
 
 console.log("in the app", allUsers, activities)
 
@@ -57,7 +73,7 @@ console.log("in the app", allUsers, activities)
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
           <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} activities={activities} />}/>
-          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} />} />
+          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} usersMatch={usersMatch} />} />
 
           </Routes>
       </div>

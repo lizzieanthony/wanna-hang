@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 
-const UserDetails = ({ allUsers}) => {
+const UserDetails = ({ allUsers, usersMatch}) => {
     const {user} = useContext(UserContext);
     const {id} = useParams();
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const UserDetails = ({ allUsers}) => {
             <h4>{singleUser.question}</h4>
             <h1>{singleUser.first_name} {singleUser.last_name}</h1>
             <h4>{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
-            <button>Match with {singleUser.first_name}</button>
+            <button onClick={usersMatch}>Match with {singleUser.first_name}</button>
           </div> 
         </div>
         </div>

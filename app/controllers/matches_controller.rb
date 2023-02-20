@@ -1,5 +1,10 @@
 class MatchesController < ApplicationController
 
+    # def index 
+    #     matches = Match.all 
+    #     render json: matches, status: 200
+    # end
+
     def index 
         matches = current_user.matches.all 
         render json: matches, status: 200

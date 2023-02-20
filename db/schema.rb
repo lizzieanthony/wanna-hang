@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_02_19_004946) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "user2_id", null: false
+    t.integer "user2_id"
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

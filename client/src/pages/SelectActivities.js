@@ -74,11 +74,9 @@ const handleSubmit = (e) => {
         if (r.ok) {
             r.json()
             // .then(newUser)
-            // .then((user) => setUser(user))
             .then(userObj => {
                 const updateAllUsers = allUsers.map(obj => {
-                    if (obj.id === user.id) { debugger
-                        // user.activities.push(addActivities)
+                    if (obj.id === user.id) { 
                         return userObj 
                     } else {
                         return obj

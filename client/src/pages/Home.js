@@ -1,5 +1,6 @@
 import React from "react";
 import ListedActivities from "./ListedActivities";
+import MatchesList from "./MatchesList";
 import {Link} from "react-router-dom";
 
 
@@ -13,6 +14,7 @@ const Home = ({allUsers, activities}) => {
         <Link to="/all">
         <button>View All Users</button>
         </Link>
+        <MatchesList />
         </div>
      );
 }

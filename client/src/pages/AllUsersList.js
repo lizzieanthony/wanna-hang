@@ -6,7 +6,6 @@ const AllUsersList = ({ activities, allUsers}) => {
     const {user} = useContext(UserContext);
     // const [allUsers, setAllUsers] = useState([])
     // const [filteredUsers, setFilteredUsers] = useState(allUsers)
-    // should be a ternary or condition in the body if slected activitiy is default then selected is all, if not then filter through 
     const [selectedActivity, setSelectedActivity] = useState("default")
 
     console.log("all users list")
@@ -19,17 +18,14 @@ const AllUsersList = ({ activities, allUsers}) => {
     let filteredUsers  
     if(selectedActivity === "default") {
        filteredUsers = orderedUsers
-    } else {
-         filteredUsers = orderedUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+    } else { 
+        // filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.filter((id) => id == selectedActivity))
+         filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+        
     } 
-    // useEffect(() => {
-    //     console.log("in useEffect")
-    //     fetch('/users')
-    //     .then((r) => r.json())
-    //     .then(allUsers => setAllUsers(allUsers));
-    // }, []);
+    console.log(otherUsers)
 
-    // 
+    console.log(orderedUsers)
     
     // useEffect(() => {
     //     setFilteredUsers(allUsers) 
@@ -64,9 +60,9 @@ const AllUsersList = ({ activities, allUsers}) => {
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>
-                <img src={user.image}alt="userImage"/>
-                <h3>{user.bio}</h3>
-                <h1>{user.first_name}</h1>
+                <img key={user.image} src={user.image}alt="userImage"/>
+                <h3 key={user.bio}>{user.bio}</h3>
+                <h1 key={user.first_name}>{user.first_name}</h1>
             </Link>
             </div>
             </div>
@@ -76,6 +72,7 @@ const AllUsersList = ({ activities, allUsers}) => {
 }
  
 export default AllUsersList;
+
 
 
  // const filterByActivity = activity => {
