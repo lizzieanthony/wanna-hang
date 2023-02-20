@@ -15,6 +15,7 @@ function App() {
   const [activities, setActivities] = useState([])
   const [otherUser, setOtherUser] = useState("")
   const [matches, setMatches] = useState([])
+  const [newMatch, setNewMatch] = useState([])
   const {id} = useParams();
 
   useEffect(() => {
@@ -34,8 +35,13 @@ function App() {
     .then((r) => r.json())
     .then(activities => setActivities(activities));
 
+    fetch('/matches')
+    .then((r) => r.json())
+    .then(matches => setMatches(matches));
+
 }, []);
 
+console.log(matches)
 const usersMatch = () => {
   const selectedUser = allUsers.find(obj => obj.id === parseInt(id))
   console.log(selectedUser)
@@ -46,7 +52,7 @@ const usersMatch = () => {
   })
   .then(r => {
     if (r.ok) {
-        r.json().then(newMatch => setMatches(newMatch))
+        r.json().then(newMatch => setNewMatch(newMatch))
     } else {
         r.json().then(error => console.log(error))
     }

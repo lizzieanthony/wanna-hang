@@ -6,13 +6,14 @@ class MatchesController < ApplicationController
     # end
 
     def index 
-        matches = current_user.matches.all 
-        render json: matches, status: 200
+        # pry
+        userMatches = current_user.matches.all 
+        render json: userMatches, status: 200
     end
 
     def create
         match = current_user.matches.create(match_params)
-        render json: matches, status: 200
+        render json: match, status: 200
     end
 
     private
