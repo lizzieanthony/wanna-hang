@@ -1,9 +1,8 @@
 import React, {useRef, useState, useContext} from 'react';
-// import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
-const UserProfile = ({allUsers, setAllUsers, activities}) => {
+const UserProfile = ({allUsers, setAllUsers}) => {
   const {user, setUser} = useContext(UserContext);
   const [errors, setErrors] = useState([]);
   const ref = useRef(null);
@@ -12,7 +11,6 @@ const UserProfile = ({allUsers, setAllUsers, activities}) => {
       navigate(-1);
   }
   
-// profile form 
   const editProfile = (updatedProfile) => {
     const updateAllUsers = allUsers.map((user) => {
         if (user.id === updatedProfile.id) {
@@ -21,7 +19,6 @@ const UserProfile = ({allUsers, setAllUsers, activities}) => {
             return user  
         } 
     });
-    // const updatedActivities= {...user, activities: updateAllUsers}
     setUser(updatedProfile)
     setAllUsers(updateAllUsers)
   }
@@ -44,24 +41,6 @@ const UserProfile = ({allUsers, setAllUsers, activities}) => {
         }
       });
 }
-
-// activity checkbox 
-
-// const [checkedState, setCheckedState] = useState(
-//     new Array(activities.length).fill(false)
-// );
-
-// const handleOnChange = (position) => {
-//     const updatedCheckedState = checkedState.map((item, index) =>
-//       index === position ? !item : item
-//     );
-//     setCheckedState(updatedCheckedState);
-// }
-
-// const orderedActivities = [].concat(activities)
-// .sort((a, b) => a.name > b.name ? 1 : -1)
-
-// delete user
 
 const onDeleteUser = (userToDelete) => {
     const updatedAllUsers = allUsers.filter(user=> user.id !== userToDelete.id)
@@ -145,54 +124,3 @@ const handleDelete = () => {
 }
  
 export default UserProfile;
-
-
-// ~~~ to display user info and update it inline 
-
-// <label>First Name:</label>
-// <input
-//   type="text"
-//   defaultValue={user.first_name}
-//   onChange={(e) => setUser({...user, first_name: e.target.value})}
-// />
-
-// const updateProfile = {
-    //     first_name: firstName,
-    //     last_name: lastName,
-    //     bio: bio,
-    //     question: question,
-    //     image: imageUrl}
-
-    //   const [formData, setFormData] = useState({
-//     first_name: "",
-//     last_name: "",
-//     bio: "",
-//     question: "",
-//     image: "",
-//   })
-//   const [firstName, setFirstName] = useState("");
-//   const [lastName, setLastName] = useState("");
-//   const [bio, setBio] = useState("");
-//   const [question, setQuestion] = useState("")
-//   const [imageUrl, setImageUrl] = useState("");
-
-// <h3>Update your activities:</h3>
-//         <ul >
-//         {orderedActivities.map((activity, index) => {
-//             return (
-//                 <ul key={index}>
-//                 <input 
-//                 type="checkbox"
-//                 id={`custom-checkbox-${index}`}
-//                 name={activity.name}
-//                 value={activity.name}
-//                 // defaultValue={user.activities}
-//                 checked={checkedState[index]}
-//                 onChange={() => handleOnChange(index)}
-//                 />
-//                 <label htmlFor={`custom-checkbox-${index}`}>  {activity.name}</label>
-//                 </ul>
-//             )
-//         }
-//         )}
-//         </ul>

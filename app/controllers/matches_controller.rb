@@ -1,12 +1,7 @@
 class MatchesController < ApplicationController
 
-    # def index 
-    #     matches = Match.all.
-    #     render json: matches, status: 200
-    # end
 
     def index 
-        # pry
         userMatches = this_user.matches.all 
         render json: userMatches, status: 200
     end

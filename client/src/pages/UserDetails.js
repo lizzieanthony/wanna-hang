@@ -12,9 +12,6 @@ const UserDetails = ({ allUsers, setMatches, matches}) => {
 		navigate(-1);
 	}
   const singleUser = allUsers.find(obj => obj.id === parseInt(id))
-    
-    // console.log(allUsers)
-    // console.log(singleUser)
 
   const addMatch = (match) => {
     const updatedMatches = [...matches, match]
@@ -65,7 +62,4 @@ const usersMatch = () => {
 export default UserDetails;
 
 
-    // useEffect(() => {
-    //     const singleUser = allUsers.find(obj => obj.id == id)
-    //     setSelectedUser(selectedUser)
-    // }, [allUsers])
+  

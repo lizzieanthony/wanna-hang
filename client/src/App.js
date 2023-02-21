@@ -27,7 +27,7 @@ function App() {
     fetch('/matches')
     .then((r) => r.json())
     .then(matches => setMatches(matches));
-    
+
     fetch('/activities')
     .then((r) => r.json())
     .then(activities => setActivities(activities));
@@ -36,11 +36,10 @@ function App() {
     .then((r) => r.json())
     .then(allUsers => setAllUsers(allUsers));
 
-   
-
 }, []);
 
-console.log("in the app", allUsers, activities, matches)
+
+console.log("in the app", allUsers, activities)
 
   if (!user) return (
     <div>
@@ -48,19 +47,18 @@ console.log("in the app", allUsers, activities, matches)
         <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers} setMatches={setMatches}/>}/>
       </Routes> 
     </div>
-  )
-    
+  ) 
 
   return (
     <div>
     <NavBar />
       <div className="content">
         <Routes > 
-          <Route path="/" element={<Home allUsers={allUsers} matches={matches}/>} />
+          <Route path="/" element={<Home />} />
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
-          <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} activities={activities} />}/>
-          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} matches={matches} setMatches={setMatches} />} />
+          <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} />}/>
+          <Route exact path="/all/:id" element={<UserDetails allUsers={allUsers} matches={matches} setMatches={setMatches} />} />
 
           </Routes>
       </div>
@@ -70,10 +68,3 @@ console.log("in the app", allUsers, activities, matches)
 
 export default App;
 
-// need to reorganize where users if fetched 
-
-// useEffect(() => {
-//   fetch('/activities')
-//   .then((r) => r.json())
-//   .then(activities => setActivities(activities));
-// }, []);

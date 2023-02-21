@@ -2,8 +2,8 @@ import MatchesList from "./MatchesList";
 import {Link} from "react-router-dom";
 
 
-const Home = ({allUsers, matches}) => {
-    // const { user} = useContext(UserContext);
+const Home = ({}) => {
+    // console.log(matches)
 
     return ( 
         <div className="home-page">
@@ -17,7 +17,7 @@ const Home = ({allUsers, matches}) => {
         <br />
         <br />
         <h1>Your Matches</h1>
-        <MatchesList matches={matches} allUsers={allUsers} />
+        <MatchesList  />
         </div>
      );
 }

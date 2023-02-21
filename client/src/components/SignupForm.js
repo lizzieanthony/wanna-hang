@@ -15,12 +15,6 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
   const [errors, setErrors] = useState([]);
   const navigate= useNavigate();
 
-//   useEffect(() => {
-//     const updatedUsers = [...allUsers, user]
-//     setUser(user)
-//     setAllUsers(updatedUsers)
-// }, [])
-
   const newUser = (addedUser) => {
     const updatedUsers = [...allUsers, addedUser]
     setUser(addedUser)
@@ -116,24 +110,3 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
  
 export default SignupForm;
 
-// <div className='newButton'>
-//           <input type="submit" value="Submit" />
-//           </div>
-
-// r.json().then((newUser) => {
-                //   const allUsersWithNew = [...allUsers, newUser]
-                //   setAllUsers(allUsersWithNew)
-
-                  // r.json().then((user) => setUser(user))
-            // .then(newUser)
-            // .then((allUsers) => setAllUsers([...allUsers, user]))
-
-            // .then(user=> {
-            //   const updatedUsers = [...allUsers, user]
-            //   //  console.log(updatedUsers)
-            //   //  console.log(user)
-            //   //  console.log(allUsers)
-            //   setAllUsers(updatedUsers)
-            // }
-            // );
-            

@@ -1,28 +1,23 @@
-// import {useContext} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-// import { UserContext } from "../context/user";
 
 
-const MatchesList = ({matches}) => {
-    // const { user} = useContext(UserContext);
-    console.log(matches)
+const MatchesList = () => {
+    const [matches, setMatches] = useState([])
+
+    useEffect(() => {
+        fetch('/matches')
+        .then((r) => r.json())
+        .then(matches => setMatches(matches));
     
-    const matchedUsers = matches?.map((user) => user.user2)
+    }, []);
+    
+    const matchedUsers = matches.map((user) => user.user2)
 
-    // let renderedMatches 
-    // if(matches){
-    //     matches?.map((user) => user.user2)
-    // } else {
-    //     return null
-    // }
-
-
-    // console.log(matchedUsers)
- 
     return ( 
         <div>
        
-        {matchedUsers?.map((user) => (
+        {matchedUsers.map((user) => (
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>
