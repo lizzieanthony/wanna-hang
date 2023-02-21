@@ -1,9 +1,10 @@
 import {useNavigate, useParams, Link} from "react-router-dom";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/user";
 
-const UserDetails = ({ allUsers, setMatches, matches}) => {
+const UserDetails = ({ allUsers}) => {
   const [newMatch, setNewMatch] = useState([])
+  const [matches, setMatches] = useState([])
   const {user, setUser} = useContext(UserContext);
   const [active, setActive] = useState(false);
   const {id} = useParams();
@@ -12,6 +13,12 @@ const UserDetails = ({ allUsers, setMatches, matches}) => {
 		navigate(-1);
 	}
   const singleUser = allUsers.find(obj => obj.id === parseInt(id))
+
+  useEffect(() => {
+    fetch('/matches')
+    .then((r) => r.json())
+    .then(matches => setMatches(matches));
+}, []);
 
   const addMatch = (match) => {
     const updatedMatches = [...matches, match]
@@ -50,7 +57,7 @@ const usersMatch = () => {
             <h4> A little more about {singleUser.first_name}: <br /> {singleUser.bio} <br /> <br /> Rima wants to hang becasue: <br />{singleUser.question}</h4>
             <h1>{singleUser.first_name} {singleUser.last_name}</h1>
             <h2> {singleUser.first_name}'s Activities:{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h2>
-            <Link to="/">
+            <Link to="/all">
               <button onClick={usersMatch}>Match with {singleUser.first_name}</button>
             </Link>
           </div> 

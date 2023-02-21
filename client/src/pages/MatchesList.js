@@ -1,18 +1,8 @@
-import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
 
-const MatchesList = () => {
-    const [matches, setMatches] = useState([])
-
-    useEffect(() => {
-        fetch('/matches')
-        .then((r) => r.json())
-        .then(matches => setMatches(matches));
+const MatchesList = ({matchedUsers}) => {
     
-    }, []);
-    
-    const matchedUsers = matches.map((user) => user.user2)
 
     return ( 
         <div>

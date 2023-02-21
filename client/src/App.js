@@ -13,7 +13,7 @@ function App() {
   const { user, setUser} = useContext(UserContext);
   const [allUsers, setAllUsers] = useState([])
   const [activities, setActivities] = useState([])
-  const [matches, setMatches] = useState([])
+  // const [matches, setMatches] = useState([])
 
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -24,9 +24,9 @@ function App() {
   }, [setUser]);
 
   useEffect(() => {
-    fetch('/matches')
-    .then((r) => r.json())
-    .then(matches => setMatches(matches));
+    // fetch('/matches')
+    // .then((r) => r.json())
+    // .then(matches => setMatches(matches));
 
     fetch('/activities')
     .then((r) => r.json())
@@ -44,7 +44,7 @@ console.log("in the app", allUsers, activities)
   if (!user) return (
     <div>
       <Routes>
-        <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers} setMatches={setMatches}/>}/>
+        <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
       </Routes> 
     </div>
   ) 
@@ -58,7 +58,7 @@ console.log("in the app", allUsers, activities)
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
           <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} />}/>
-          <Route exact path="/all/:id" element={<UserDetails allUsers={allUsers} matches={matches} setMatches={setMatches} />} />
+          <Route exact path="/all/:id" element={<UserDetails allUsers={allUsers} />} />
 
           </Routes>
       </div>

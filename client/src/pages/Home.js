@@ -1,9 +1,19 @@
 import MatchesList from "./MatchesList";
-import {Link} from "react-router-dom";
+import {Link} from "react-router-dom"
+import {useEffect, useState} from "react";
 
 
 const Home = ({}) => {
-    // console.log(matches)
+    const [matches, setMatches] = useState([])
+
+    useEffect(() => {
+        fetch('/matches')
+        .then((r) => r.json())
+        .then(matches => setMatches(matches));
+    }, []);
+    
+    console.log(matches)
+    const matchedUsers = matches?.map((user) => user.user2)
 
     return ( 
         <div className="home-page">
@@ -17,7 +27,7 @@ const Home = ({}) => {
         <br />
         <br />
         <h1>Your Matches</h1>
-        <MatchesList  />
+        <MatchesList matchedUsers={matchedUsers} />
         </div>
      );
 }

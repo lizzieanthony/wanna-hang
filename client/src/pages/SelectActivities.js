@@ -4,7 +4,6 @@ import { UserContext } from "../context/user";
 
 const SelectActivities = ({activities, allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
-   
     const navigate= useNavigate()
     const [checkedState, setCheckedState] = useState(
         new Array(activities.length).fill(false)
