@@ -47,7 +47,7 @@ const LoginForm = () => {
            onChange={(e) => setPassword(e.target.value)}
          />
          <button>Let's Hang</button>
-         {errors.map((err) => (
+         {errors?.map((err) => (
         <p key={err}>{err}</p>
         ))}
        </form>

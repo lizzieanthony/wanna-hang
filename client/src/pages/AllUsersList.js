@@ -24,33 +24,19 @@ const AllUsersList = ({ activities, allUsers}) => {
     if(selectedActivity === "default") {
        filteredUsers = orderedUsers
     } else { 
-        debugger
+        // debugger
+        // look at a users activities and see if this selected activity is there 
         // filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.filter(({id}) => id == selectedActivity))
-         filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+        //  filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
         // filteredUsers = orderedUsers.filter((user) => selectedActivity === user.activities.find(({id}) => id === 4))
         //  filteredUsers = orderedUsers.filter(user => user.activities.filter(({id}) => id.includes(selectedActivity)))
         //   filteredUsers = orderedUsers.filter((user) => selectedActivity == user.activities.find(({id}) => id === 5).id)
-           console.log(filteredUsers)
+        filteredUsers = orderedUsers.filter((user) => user.activities.find((activity) => activity.id === parseInt(selectedActivity)))
+        // orderedUsers[2].activities.find((activity) => activity.id === parseInt(selectedActivity))
+        // console.log(filteredUsers)
         } 
-    // console.log(otherUsers)
     // console.log(orderedUsers)
-    
-    // useEffect(() => {
-    //     setFilteredUsers(allUsers) 
-    // }, [allUsers])
-    
-    //   useEffect(() => {
-    //     // debugger
-    //     if (selectedActivity === "default") {
-    //       setFilteredUsers(allUsers)
-    //     }
-    //     else {
-    //       const activityFilteredUsers = allUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
-    //       setFilteredUsers(activityFilteredUsers)
-    //     }
-    //   }, [selectedActivity])
 
-    // console.log(filteredUsers)
     console.log(allUsers)
     return ( 
         <div className="main">
@@ -94,3 +80,17 @@ export default AllUsersList;
     //     )
     // }
 
+// useEffect(() => {
+    //     setFilteredUsers(allUsers) 
+    // }, [allUsers])
+    
+    //   useEffect(() => {
+    //     // debugger
+    //     if (selectedActivity === "default") {
+    //       setFilteredUsers(allUsers)
+    //     }
+    //     else {
+    //       const activityFilteredUsers = allUsers?.filter((user) => selectedActivity == user.activities.map((activity) => activity.id))
+    //       setFilteredUsers(activityFilteredUsers)
+    //     }
+    //   }, [selectedActivity])

@@ -5,14 +5,24 @@ import {Link} from "react-router-dom";
 
 const MatchesList = ({matches}) => {
     // const { user} = useContext(UserContext);
-
+    console.log(matches)
+    
     const matchedUsers = matches?.map((user) => user.user2)
-    console.log(matchedUsers)
+
+    // let renderedMatches 
+    // if(matches){
+    //     matches?.map((user) => user.user2)
+    // } else {
+    //     return null
+    // }
+
+
+    // console.log(matchedUsers)
  
     return ( 
         <div>
        
-        {matchedUsers.map((user) => (
+        {matchedUsers?.map((user) => (
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>

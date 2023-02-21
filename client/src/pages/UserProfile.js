@@ -90,7 +90,7 @@ const handleDelete = () => {
         <img src={user.image}alt="userImage"/>
         <h4> A little more about {user.first_name}: <br /> {user.bio} <br /> <br /> {user.first_name} wants to hang becasue: <br />{user.question}</h4>
         <h1>{user.first_name} {user.last_name}</h1>
-        <h4>{user.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
+        <h4>Your Activities: {user.activities.map((activity) => (<p>{activity.name}</p>))}</h4>
       </div> 
     </div>
     </div>

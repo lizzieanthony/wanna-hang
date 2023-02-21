@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/user";
 
-const NavBar = () => {
+const NavBar = ({setMatches}) => {
     const { user, setUser} = useContext(UserContext);
 
     // const currentUser = (updatedUser) => {
@@ -15,7 +15,7 @@ const NavBar = () => {
     function handleLogoutClick() {
         fetch("/logout", {method: "DELETE"}).then((r) => {
             if (r.ok) {
-             setUser(null)   
+             setUser(null) 
             }
         })
     }

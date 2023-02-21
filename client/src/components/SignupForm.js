@@ -105,8 +105,8 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
            value={password}
            onChange={(e) => setPassword(e.target.value)}
          />
-         {errors.map((err) => (
-            <p key={err}>{err}</p>
+         {errors?.map((err) => (
+            <p key={err}>Error: {err}</p>
           ))}
         <button className='newButton' type="submit">Let's Hang</button>
         </form>

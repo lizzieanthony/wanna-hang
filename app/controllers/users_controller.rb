@@ -15,10 +15,13 @@ class UsersController < ApplicationController
     end
 
     def create 
-        @user = User.create(user_params)
-        login_user
-        render json: @user, status: 201
+        if @user = User.create(user_params)
+            login_user
+            render json: @user, status: 201
+        else
+            render json: {error: "Invalid inputs, please update information" }, status: 401  
     end
+end
 
     def update
         user = User.find_by_id(params[:id])

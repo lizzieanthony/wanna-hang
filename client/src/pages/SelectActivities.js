@@ -28,6 +28,7 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
+
 //   const newUser = (activities) => {
 //     const newUserActivities = {...user.activities, activities}
 //     // user.activities = newUserActivities

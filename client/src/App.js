@@ -24,17 +24,19 @@ function App() {
   }, [setUser]);
 
   useEffect(() => {
-    fetch('/users')
+    fetch('/matches')
     .then((r) => r.json())
-    .then(allUsers => setAllUsers(allUsers));
-
+    .then(matches => setMatches(matches));
+    
     fetch('/activities')
     .then((r) => r.json())
     .then(activities => setActivities(activities));
 
-    fetch('/matches')
+    fetch('/users')
     .then((r) => r.json())
-    .then(matches => setMatches(matches));
+    .then(allUsers => setAllUsers(allUsers));
+
+   
 
 }, []);
 
@@ -43,7 +45,7 @@ console.log("in the app", allUsers, activities, matches)
   if (!user) return (
     <div>
       <Routes>
-        <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
+        <Route path="/" element={<Login allUsers={allUsers} setAllUsers={setAllUsers} setMatches={setMatches}/>}/>
       </Routes> 
     </div>
   )
