@@ -1,13 +1,13 @@
 class MatchesController < ApplicationController
 
     # def index 
-    #     matches = Match.all 
+    #     matches = Match.all.
     #     render json: matches, status: 200
     # end
 
     def index 
         # pry
-        userMatches = current_user.matches.all 
+        userMatches = this_user.matches.all 
         render json: userMatches, status: 200
     end
 
@@ -21,5 +21,10 @@ class MatchesController < ApplicationController
     def match_params
         params.permit(:user_id, :user2_id)
     end
+
+    def this_user
+        User.find_by(id: session[:user_id])
+    end
+        
 
 end

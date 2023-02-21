@@ -1,30 +1,56 @@
 import {useNavigate, useParams} from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../context/user";
 
-const UserDetails = ({ allUsers, usersMatch}) => {
-    const {user} = useContext(UserContext);
-    const {id} = useParams();
-    const navigate = useNavigate();
+const UserDetails = ({ allUsers, setMatches, matches}) => {
+  const [newMatch, setNewMatch] = useState([])
+  const {user, setUser} = useContext(UserContext);
+  const {id} = useParams();
+  const navigate = useNavigate();
 	const goBack = () => {
 		navigate(-1);
 	}
-  console.log(allUsers)
-  
-    const singleUser = allUsers.find(obj => obj.id === parseInt(id))
+  const singleUser = allUsers.find(obj => obj.id === parseInt(id))
     
-    console.log(singleUser)
+    // console.log(allUsers)
+    // console.log(singleUser)
+
+  const addMatch = (match) => {
+    const updatedMatches = [...matches, match]
+    const updatedUser = {...user, matches: updatedMatches}
+    setUser(updatedUser)
+    setNewMatch(match)
+    setMatches(updatedMatches)
+  }
+  console.log(matches)
+  console.log(user)
+
+const usersMatch = () => {
+  console.log(singleUser)
+  fetch("/matches", {
+    method: "POST",
+    headers: {"Content-Type" : "application/json"},
+    body: JSON.stringify({user_id: user.id, user2_id: singleUser.id})
+  })
+  .then(r => {
+    if (r.ok) {
+        r.json().then(addMatch)
+        console.log(matches)
+    } else {
+        r.json().then(error => console.log(error))
+    }
+  })
+}
 
     return ( 
         <div className="main">
             <button onClick={goBack}>back</button>
         <div className="user-preview" key={user.id}>
-          <div className="card-1">
+          <div>
             <img src={singleUser.image}alt="userImage"/>
-            <h3>{singleUser.bio}</h3>
-            <h4>{singleUser.question}</h4>
+            <h4> A little more about {singleUser.first_name}: <br /> {singleUser.bio} <br /> <br /> Rima wants to hang becasue: <br />{singleUser.question}</h4>
             <h1>{singleUser.first_name} {singleUser.last_name}</h1>
-            <h4>{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
+            <h2> {singleUser.first_name}'s Activities:{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h2>
             <button onClick={usersMatch}>Match with {singleUser.first_name}</button>
           </div> 
         </div>

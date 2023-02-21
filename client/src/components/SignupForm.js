@@ -108,7 +108,7 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
-        <button className='newButton' type="submit">Create Account</button>
+        <button className='newButton' type="submit">Let's Hang</button>
         </form>
       </div>
      );

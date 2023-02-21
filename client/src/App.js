@@ -1,4 +1,4 @@
-import { Routes, Route, useParams } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import {useState, useEffect, useContext} from "react";
 import {UserContext} from "./context/user";
 import Login from "./pages/Login";
@@ -13,10 +13,7 @@ function App() {
   const { user, setUser} = useContext(UserContext);
   const [allUsers, setAllUsers] = useState([])
   const [activities, setActivities] = useState([])
-  const [otherUser, setOtherUser] = useState("")
   const [matches, setMatches] = useState([])
-  const [newMatch, setNewMatch] = useState([])
-  const {id} = useParams();
 
   useEffect(() => {
     fetch('/me').then((r) => {
@@ -41,25 +38,7 @@ function App() {
 
 }, []);
 
-console.log(matches)
-const usersMatch = () => {
-  const selectedUser = allUsers.find(obj => obj.id === parseInt(id))
-  console.log(selectedUser)
-  fetch("/matches", {
-    method: "POST",
-    headers: {"Content-Type" : "application/json"},
-    body: JSON.stringify({user_id: user.id, user2_id: selectedUser})
-  })
-  .then(r => {
-    if (r.ok) {
-        r.json().then(newMatch => setNewMatch(newMatch))
-    } else {
-        r.json().then(error => console.log(error))
-    }
-  })
-}
-
-console.log("in the app", allUsers, activities)
+console.log("in the app", allUsers, activities, matches)
 
   if (!user) return (
     <div>
@@ -75,11 +54,11 @@ console.log("in the app", allUsers, activities)
     <NavBar />
       <div className="content">
         <Routes > 
-          <Route path="/" element={<Home allUsers={allUsers} activities={activities}/>} />
+          <Route path="/" element={<Home allUsers={allUsers} matches={matches}/>} />
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
           <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} activities={activities} />}/>
-          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} usersMatch={usersMatch} />} />
+          <Route exact path="/all/:id" element={<UserDetails user={user} setUser={setUser} allUsers={allUsers} matches={matches} setMatches={setMatches} />} />
 
           </Routes>
       </div>

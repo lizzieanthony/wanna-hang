@@ -86,10 +86,9 @@ const handleDelete = () => {
         <div className="main">
         <button onClick={goBack}>back</button>
     <div className="user-preview" key={user.id}>
-      <div className="card-1">
+      <div>
         <img src={user.image}alt="userImage"/>
-        <h3>{user.bio}</h3>
-        <h4>{user.question}</h4>
+        <h4> A little more about {user.first_name}: <br /> {user.bio} <br /> <br /> {user.first_name} wants to hang becasue: <br />{user.question}</h4>
         <h1>{user.first_name} {user.last_name}</h1>
         <h4>{user.activities.map((activity) => (<ul>{activity.name}</ul>))}</h4>
       </div> 

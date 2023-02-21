@@ -1,20 +1,23 @@
-import React from "react";
-import ListedActivities from "./ListedActivities";
 import MatchesList from "./MatchesList";
 import {Link} from "react-router-dom";
 
 
-const Home = ({allUsers, activities}) => {
+const Home = ({allUsers, matches}) => {
+    // const { user} = useContext(UserContext);
+
     return ( 
         <div className="home-page">
-        <h2>Find people by activity: </h2>
-        <div className="activity-list">
-        <ListedActivities allUsers={allUsers} activities={activities} />
+        <div className="intro-card">
+            <h2> Welcome! <br />  This platform was designed to facilitate a place for people to make connections through joined activities. Scroll through all users below and match with anyone you want to hang with. Once you're matched they will appear on this page with their contact info so you can start hanging. </h2>
+            <Link to="/all">
+                <button>Let's Hang </button>
+            </Link>
         </div>
-        <Link to="/all">
-        <button>View All Users</button>
-        </Link>
-        <MatchesList />
+        
+        <br />
+        <br />
+        <h1>Your Matches</h1>
+        <MatchesList matches={matches} allUsers={allUsers} />
         </div>
      );
 }

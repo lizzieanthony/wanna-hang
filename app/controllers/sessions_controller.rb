@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         if @user&.authenticate(params[:password])
             login_user
             render json: @user, status: 201
-            pry
+            
         else 
             render json: { errors: ["Username or password did not match"]}, status: :unauthorized
         end

@@ -13,7 +13,7 @@ const Login = ({allUsers, setAllUsers}) => {
              <h1 className="title">Wanna Hang?</h1>
             </div>
         <div className="login-box">
-        <h2>Step out of your comfort zone! we make the first move for you</h2>
+        <h2>Wanna Hang was made to help facilitate hangs for people with common insterests.</h2>
         {showLogin ? (
             <div>
             <LoginForm setUser={setUser}  />

@@ -115,35 +115,47 @@
 .nav a:hover {
   color: #ffa0af
 }
-.nav h2 {
+.links h2 {
   color: #e0fbfc;
-  font-size: 20px;
+  font-size: 22px;
+  float: right;
 }
 
-/* .nav button {
-  background: #3d5a80;
-  color: #fff;
+.links button {
+  background: #98c1d9;
+  color: #3d5a80;
   border: 0;
-  padding: 8px;
-  margin: 10px;
+  padding: 5px;
+  margin: 1px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 18px;
-} */
+  font-size: 14px;
+}
+.links button:hover {
+  background-color: #ee6c4d;
+  color: #e0fbfc;
+}
 
 /* HOME PAGE */
 
 .home-page {
   text-align: center;
   margin-top: 60px;
-
 }
 
-.activity-list {
+.home-page h1 {
+  color:#3d5a80
+}
+
+.intro-card {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
   text-align: center;
-  column-count: 2;
-  width: 500px;
-  margin: 20px auto;
+  background-color: #98c1d9;
+  border-radius: 8px;
+  color: #3d5a80;
+  box-shadow: 0px 0px 10px #3d5a80;
 }
 
 /* LISTED USERS */
@@ -158,7 +170,7 @@
   box-shadow: 0px 0px 10px #3d5a80;
   background-color: #98c1d9;
 }
-.user-preview h3 {
+.user-preview h2 {
   float: right;
   width: 350px;
   padding-top: 10px;
@@ -166,9 +178,42 @@
   box-sizing: border-box; 
   text-align: justify;
 }
-.user-preview h1 {
+.user-preview h3 {
+  float: right;
+  width: 350px;
+  padding-top: 10px;
+  padding-left: 8%;
+  /* padding-right: 8%; */
+  box-sizing: border-box; 
+  text-align: justify;
+}
+.user-preview h4 {
+  float: right;
+  width: 350px;
+  padding-top: 10px;
+  padding-right: 5%;
+  /* padding-right: 8%; */
+  box-sizing: border-box; 
+  text-align: justify;
+}
+.card-1 h1 {
   width: 200px;
   text-align: center;
+}
+.user-preview button{
+  background: #3d5a80;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.user-preview img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
 }
 
 .card-1 {
@@ -183,6 +228,51 @@
 .check-list {
   font-size: 22px;
   color: #3d5a80
+}
+.dropdown select {
+  background: #3d5a80;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  float: right;
+}
+.dropdown select:hover {
+  background-color: #ee6c4d;
+  color: #e0fbfc;
+}
+.home-page button{
+  background: #ee6c4d;
+  color: #3d5a80;
+  border-radius: 10px;
+  font-size: 18px;
+  border: 0;
+  padding: 6px;
+  margin: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 22px;
+}
+.home-page button:hover {
+  background-color: #3d5a80;
+  color: #e0fbfc;
+}
+.main button {
+  background: #3d5a80;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 18px;
+  border: 0;
+  padding: 6px;
+  margin: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.main button:hover {
+  background-color: #ee6c4d;
+  color: #e0fbfc;
 }
 
 /* EDIT USER */
