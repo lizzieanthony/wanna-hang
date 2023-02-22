@@ -19,8 +19,6 @@ const handleOnChange = (position) => {
 const orderedActivities = [].concat(activities)
 .sort((a, b) => a.name > b.name ? 1 : -1)
 
-// if the activity is in the users list render the check mark
-
 const handleSubmit = (e) => {
     e.preventDefault()
     let formActivityIds = [];
