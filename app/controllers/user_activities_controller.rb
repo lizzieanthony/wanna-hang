@@ -7,8 +7,9 @@ class UserActivitiesController < ApplicationController
     end
 
     def update
-        pry
-        params[:activity_ids].each{|activity_id| current_user.user_activities.update(user_id: current_user.id, activity_id: activity_id)}
+        # pry
+        # userActivity = current_user.user_activities.find(params[:activity_ids])
+        params[:activity_ids].each{|activity_id| UserActivity.update(user_id: current_user.id, activity_id: activity_id)}
         render json: current_user
     end
 
@@ -26,12 +27,12 @@ class UserActivitiesController < ApplicationController
 end
 
 
-def update
-    userActivity = current_user.user_activities.find(params[:id])
-    userActivity.update!(user_activity_params)
-    render json: userActivity
-end
+# def update
+#     userActivity = current_user.user_activities.find(params[:id])
+#     userActivity.update!(user_activity_params)
+#     render json: userActivity
+# end
 
-userActivity = current_user.user_activities.find(params[:activity_id])
-        params[:activity_ids].each{|activity_id| current_user.user_activities.update(activity_id: activity_id)}
-        userActivity = params[:activity_id].each{|activity_id|} current_user.user_activities.find()
+# userActivity = current_user.user_activities.find(params[:activity_ids])
+#         params[:activity_ids].each{|activity_id| current_user.user_activities.update(activity_id: activity_id)}
+#         userActivity = params[:activity_id].each{|activity_id|} current_user.user_activities.find()
