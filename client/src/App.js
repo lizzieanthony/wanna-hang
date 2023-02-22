@@ -7,6 +7,7 @@ import AllUsersList from "./pages/AllUsersList";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import SelectActivities from "./pages/SelectActivities";
+import UpdateActivities from "./pages/UpdateActivities";
 import UserDetails from "./pages/UserDetails";
 
 function App() {
@@ -56,6 +57,7 @@ console.log("in the app", allUsers, activities)
         <Routes > 
           <Route path="/" element={<Home />} />
           <Route exact path="/setup" element={<SelectActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
+          <Route exact path="/update" element={<UpdateActivities activities={activities} allUsers={allUsers} setAllUsers={setAllUsers}/>}/>
           <Route exact path = "/all" element={<AllUsersList allUsers={allUsers} activities={activities} />} />
           <Route exact path="/edit_profile" element={<UserProfile allUsers={allUsers} setAllUsers={setAllUsers} />}/>
           <Route exact path="/all/:id" element={<UserDetails allUsers={allUsers} />} />

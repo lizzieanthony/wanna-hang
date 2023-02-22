@@ -1,6 +1,6 @@
 import React, {useRef, useState, useContext} from 'react';
 import { UserContext } from "../context/user";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const UserProfile = ({allUsers, setAllUsers}) => {
   const {user, setUser} = useContext(UserContext);
@@ -59,6 +59,9 @@ const handleDelete = () => {
         navigate("/")
     })
 }
+const addDefaultSrc = (ev) => {
+  ev.target.src = 'https://www.w3schools.com/howto/img_avatar.png'
+}
 
     return ( 
         <div>
@@ -66,7 +69,7 @@ const handleDelete = () => {
         <button onClick={goBack}>back</button>
     <div className="user-preview" key={user.id}>
       <div>
-        <img src={user.image}alt="userImage"/>
+        <img src={user.image}alt="userImage"  onError={addDefaultSrc} />
         <h4> A little more about {user.first_name}: <br /> {user.bio} <br /> <br /> {user.first_name} wants to hang becasue: <br />{user.question}</h4>
         <h1>{user.first_name} {user.last_name}</h1>
         <h4>Your Activities: {user.activities.map((activity) => (<p>{activity.name}</p>))}</h4>
@@ -109,14 +112,17 @@ const handleDelete = () => {
            type="text"
            required
            defaultValue={user.image}
-           onChange={(e) => setUser({...user, image: e.target.value})} 
+           onChange={(e) => setUser({...user, image: e.target.value})}
          />
          {errors.map((err) => (
             <p key={err}>{err}</p>
           ))}
           
-        <button className='newButton' type="submit">Return Home</button>
+        <button className='newButton' type="submit">Save Profile</button>
         </form>
+        <Link to="/update">
+        <button className='newButton' >Edit Activities</button>
+        </Link>
         <button className='newButton' onClick={handleDelete}>Deactivate Account</button>
       </div>
       </div>
@@ -124,3 +130,4 @@ const handleDelete = () => {
 }
  
 export default UserProfile;
+//           

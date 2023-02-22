@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/user";
 
-const SelectActivities = ({activities, allUsers, setAllUsers}) => {
+const UpdateActivities = ({activities, allUsers, setAllUsers}) => {
     const {user, setUser} = useContext(UserContext);
     const navigate= useNavigate()
     const [checkedState, setCheckedState] = useState(
@@ -28,8 +28,8 @@ const handleSubmit = (e) => {
         if (e.target[i].checked) formActivityIds.push(parseInt(e.target.elements[i].value))
     }
     console.log(formActivityIds)
-    fetch("/user_activities", {
-        method: "POST",
+    fetch(`/user_activities/${user.id}`, {
+        method: "PATCH",
         headers: {
            "Content-Type" : "application/json"
         },
@@ -49,13 +49,10 @@ const handleSubmit = (e) => {
                 setUser(userObj)
                 setAllUsers(updateAllUsers)
             })
-            navigate("/")
+            navigate("/edit_profile")
             }
     }))
 }
-
-console.log(checkedState)
-
     return ( 
         <div className="check-list">
         <form onSubmit={handleSubmit}>
@@ -81,9 +78,8 @@ console.log(checkedState)
         <button className='newButton' type="submit">Save Activities</button>
         </div>
         </form>
-        </div>
-     );
+        </div> 
+        );
 }
  
-export default SelectActivities;
-
+export default UpdateActivities;

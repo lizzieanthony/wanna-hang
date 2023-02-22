@@ -41,7 +41,7 @@ const LoginForm = () => {
          />
         <label>Password:</label>
          <input
-           type="text"
+           type="password"
            required
            value={password}
            onChange={(e) => setPassword(e.target.value)}

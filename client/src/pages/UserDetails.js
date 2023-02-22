@@ -48,13 +48,17 @@ const usersMatch = () => {
   })
 }
 
+const addDefaultSrc = (ev) => {
+  ev.target.src = 'https://www.w3schools.com/howto/img_avatar.png'
+}
+
     return ( 
         <div className="main">
             <button onClick={goBack}>back</button>
         <div className="user-preview" key={user.id}>
           <div>
-            <img src={singleUser.image}alt="userImage"/>
-            <h4> A little more about {singleUser.first_name}: <br /> {singleUser.bio} <br /> <br /> Rima wants to hang becasue: <br />{singleUser.question}</h4>
+            <img src={singleUser.image}alt="userImage" onError={addDefaultSrc}/>
+            <h4> A little more about {singleUser.first_name}: <br /> {singleUser.bio} <br /> <br /> {singleUser.first_name} wants to hang becasue: <br />{singleUser.question}</h4>
             <h1>{singleUser.first_name} {singleUser.last_name}</h1>
             <h2> {singleUser.first_name}'s Activities:{singleUser.activities.map((activity) => (<ul>{activity.name}</ul>))}</h2>
             <Link to="/all">

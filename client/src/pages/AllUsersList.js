@@ -27,6 +27,10 @@ const AllUsersList = ({ activities, allUsers}) => {
 
     console.log(allUsers)
 
+    const addDefaultSrc = (ev) => {
+        ev.target.src = 'https://www.w3schools.com/howto/img_avatar.png'
+      }
+
     return ( 
         <div className="main">
         <button onClick={goBack}>back</button>
@@ -46,7 +50,7 @@ const AllUsersList = ({ activities, allUsers}) => {
             <div className="user-preview" key={user.id}>
             <div className="card-1">
             <Link to={`/all/${user.id}`}>
-                <img key={user.image} src={user.image}alt="userImage"/>
+                <img key={user.image} src={user.image}alt="userImage" onError={addDefaultSrc}/>
                 <h3 key={user.bio}>{user.bio}</h3>
                 <h1 key={user.first_name}>{user.first_name}</h1>
             </Link>

@@ -14,6 +14,23 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const navigate= useNavigate();
+//   class App extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             defaultImage:
+// 'https://media.geeksforgeeks.org/wp-content/uploads/20220608214420/galaryImage5-300x300.png',
+//         };
+//     }
+  
+//     // replace image function
+//     replaceImage = (error) => {
+//         //replacement of broken Image
+//         error.target.src = this.state.defaultImage; 
+//     }
+  
+
+
 
   const newUser = (addedUser) => {
     const updatedUsers = [...allUsers, addedUser]
@@ -44,9 +61,11 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
-        });
+        });      
     }
-
+    // const addDefaultSrc = (ev) => {
+    //   ev.target.src = 'https://www.w3schools.com/howto/img_avatar.png'
+    // }
     return ( 
         <div className="login-form">
         <form onSubmit={handleSubmit}>
@@ -110,3 +129,4 @@ const SignupForm = ({ allUsers, setAllUsers}) => {
  
 export default SignupForm;
 
+//            onError={this.addDefaultSrc}
